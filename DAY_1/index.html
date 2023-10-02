@@ -1,0 +1,48 @@
+<!-- 
+    02-10-2023
+    1)Created elements with the help of plain Js
+    2)Get React in our systems using React CDN Links
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <title>Day 1</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <h1>Hare Krishna!!</h1>
+    <h1>Radhe radhe 💐</h1>
+
+    <script>
+      // Creating elements in Js using Impertive method
+      const header = document.createElement("h2");
+      header.textContent = "Hello World JS";
+      header.className = "heading";
+      document.getElementById("root").append(header);
+      // End of Creating elements in Js using Impertive menthod
+
+      // Creating elements in ReactJs
+      const reactHeading = React.createElement(
+        "h3",
+        { className: "heading" },
+        "Hello React!!"
+      );
+      ReactDOM.createRoot(document.getElementById("root")).render(reactHeading);
+      // End of Creating elements in ReactJS
+    </script>
+  </body>
+</html>
