@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <title>Day 2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // Creating element in JSX in declarative mode (single line does not need brackets)
+      const reactHeading1 = <h1>Day 2 React Learning</h1>;
+
+      // Creating multiple elemets using Div  or any other element method 1 but extra div will be added
+      const reactElement = (
+        <p>
+          <h1>Day 2 react Learning method 1</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ipsam
+            error provident?
+          </p>
+        </p>
+      );
+      // Creating multiple elemets using React.fragment method 2
+      const reactElement1 = (
+        <React.Fragment>
+          <h1>Day 2 react Learning method 2</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ipsam
+            error provident?
+          </p>
+        </React.Fragment>
+      );
+
+      // Creating multiple elemets using React fragments method 3
+      const reactElement2 = (
+        <>
+          <h2>About React</h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam,
+            harum.
+          </p>
+          <ul>
+            <li>React Composable</li>
+            <li>React is declarative</li>
+            <li>Used to Make SPA</li>
+          </ul>
+        </>
+      );
+
+      //   rendering the element
+      ReactDOM.createRoot(document.getElementById("root")).render(
+        reactElement
+      );
+    </script>
+  </body>
+</html>
