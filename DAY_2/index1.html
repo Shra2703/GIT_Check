@@ -1,0 +1,91 @@
+<!-- 
+    03-10-2023
+    3)Learn How to make Componets (functional Components)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <title>Day 2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // Creating functional componets naming convention should be a capital letter because to defferitiate bettween native elements and custom based react elements (method 1)
+      function App() {
+        return (
+          <>
+            <h2>About React using functional Components</h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Quisquam, harum.
+            </p>
+            <ul>
+              <li>React Composable</li>
+              <li>React is declarative</li>
+              <li>Used to Make SPA</li>
+            </ul>
+          </>
+        );
+      }
+
+      //   method 2 using arrow function without return keyword
+      const App1 = () => (
+        <>
+          <h2>
+            About React using functional Components (with arrow but without
+            return keyword)
+          </h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam,
+            harum.
+          </p>
+        </>
+      );
+
+      //   method 2 using arrow function with return keyword
+      const App2 = () => {
+        return (
+          <>
+            <h2>
+              About React using functional Components (with arrow2 with return
+              keyword)
+            </h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Quisquam, harum.
+            </p>
+          </>
+        );
+      };
+
+      //   rendering the element
+      ReactDOM.createRoot(document.getElementById("root")).render(<App2 />);
+      // calling multiple components
+      ReactDOM.createRoot(document.getElementById("root")).render(
+        <>
+          <App1 />
+          <App2 />
+        </>
+      );
+    </script>
+  </body>
+</html>
