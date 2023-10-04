@@ -1,0 +1,81 @@
+<!-- 
+    04-10-2023
+    3)How to use arrays, objects
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 3</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        // arr1 display directly
+        let arr = [1, 2, 3, 4, 5];
+        // arr2 display with the map function
+        let cars = ["BMW", "Nexa", "Maruti", "Rolls Royes"];
+        // arr3 using filter function and then map function
+        let num = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        // object
+        let obj = {
+          name: "Alexa",
+          age: 80,
+        };
+
+        const filterFunct = () => {
+          return num.filter((n) => n % 2 == 0);
+        };
+
+        let resultArr = filterFunct();
+        return (
+          <>
+            <h1>JSX Learnign: Arrays and Objects in JS</h1>
+            <p>Object:{obj.name}</p>
+            <p>Array:{arr}</p>
+
+            {/*Using Arrays with the help of Map function*/}
+            {arr.map((num) => (
+              <h2>{num}</h2>
+            ))}
+
+            <h2>Displaying Cars</h2>
+            {/*We need to use uniques key assigned to each value of an array so that it will uniquely assigned */}
+            <ul>
+              {cars.map((c, index) => (
+                <li key={index}>{c}</li>
+              ))}
+            </ul>
+
+            {/*Using Filter function*/}
+            <h3>{resultArr}</h3>
+            <h3>Dispalying Only even numbers</h3>
+            <ul>
+              {filterFunct().map((n) => (
+                <li>{n}</li>
+              ))}
+            </ul>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
