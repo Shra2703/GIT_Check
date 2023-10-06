@@ -1,0 +1,64 @@
+<!-- 
+    06-10-2023
+    1) Started learning event handling in ReactJS
+    2) Done 1 exercise of toggling the button
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1(toggle the button)</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+  </head>
+  <body>
+    <div id="root" style="text-align: center"></div>
+    <script type="text/babel">
+      // variable for button text and paragraph text
+      let buttonText = "Show Element here";
+      let paraText = "";
+
+      // function to toggle the button
+      const setShow = () => {
+        if (paraText) {
+          buttonText = "Show Element here";
+          paraText = "";
+        } else {
+          buttonText = "Hide Element here";
+          paraText = "Hello ninja!! I am here";
+        }
+        // Everytime we make changes in the UI we have to render the app otherwise the changes will not show on screen
+        rootElement.render(<App />);
+      };
+
+      // Componet
+      const App = () => {
+        return (
+          <>
+            <h1>HELLO EVERYONE!!</h1>
+            <button onClick={setShow}>{buttonText}</button>
+            <p>{paraText}</p>
+          </>
+        );
+      };
+
+      // App render element
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
