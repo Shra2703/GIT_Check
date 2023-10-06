@@ -1,0 +1,116 @@
+<!-- 
+    06-10-2023
+    3) Done 2 exercise of toggling the div's using event handling
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1(toggle the button)</title>
+    <link rel="stylesheet" href="favouriteFood.css" />
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+  </head>
+  <body>
+    <div id="root" style="text-align: center"></div>
+    <script type="text/babel">
+      // array of food items
+      const food = [
+        {
+          name: "Pizza",
+          image:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1672294935/assets/shourav-sheikh-a66sGfOnnqQ-unsplash_dufyvk.jpg",
+        },
+        {
+          name: "Burger",
+          image:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1672294934/assets/food-photographer-E94j3rMcxlw-unsplash_kuljtd.jpg",
+        },
+        {
+          name: "Pasta",
+          image:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1672294934/assets/pixzolo-photography-aeESmmFKH0M-unsplash_wag5lc.jpg",
+        },
+        {
+          name: "Sushi",
+          image:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1672294934/assets/pixzolo-photography-aeESmmFKH0M-unsplash_wag5lc.jpg",
+        },
+      ];
+
+      //   variable to get the favourite food item
+      let favouriteFood = {
+        name: "",
+        img: "",
+      };
+
+      let clicked = false;
+
+      // onclick function when a particular food item is being clicked
+      const handleFavouriteFood = (item, index) => {
+        clicked = true;
+        favouriteFood.name = item.name;
+        favouriteFood.img = item.image;
+        rootElement.render(<App />);
+      };
+
+      //   favourite food item div when clicked
+      const FavouriteFood = () => {
+        return (
+          <>
+            <div className="favourite-food">
+              <strong>Your favourite food is:</strong>
+              <h3>{favouriteFood.name}</h3>
+              <img src={favouriteFood.img} />
+            </div>
+          </>
+        );
+      };
+
+      // Component App
+      const App = () => {
+        return (
+          <>
+            <h1>HELLO EVERYONE!!</h1>
+
+            {/*show the favourite food component when the item is clicked*/}
+            {clicked && <FavouriteFood />}
+            
+            <h2>Select your favourite food item!!!</h2>
+
+            {/*iterate over all the array elements*/}
+            <div className="food-list">
+              {food.map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleFavouriteFood(item, index)}
+                >
+                  <h3>{item.name}</h3>
+                  <img src={item.image} alt="food item img" />
+                </div>
+              ))}
+            </div>
+          </>
+        );
+      };
+
+      // App render element
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
