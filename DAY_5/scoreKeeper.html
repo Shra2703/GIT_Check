@@ -20,31 +20,66 @@
     <!-- End of Babel compiler CDN Links -->
   </head>
   <body>
-    <div id="root" style="text-align: center;"></div>
+    <div id="root" style="text-align: center"></div>
     <script type="text/babel">
+      let runs = 0;
+      let wicket = 0;
+      let wicketText = "";
+
+      // fuction to increase the score by 1 #1
       const clickOne = () => {
-        alert("One clicked")
-      }
-      const App = () => {
-        let runs = 0;
-        let wicket = 0;
+        runs += 1;
+        rootElement.render(<App />);
+      };
+
+      // we make a generic function to avoid the repetation
+      // function to increase the score in generic manner #2
+      const runInc = (num) => {
+        if (wicket < 10) runs += num;
+        rootElement.render(<App />);
+      };
+
+      // function to increase the wicket
+      const wicketFunct = () => {
+        if (wicket < 10) wicket += 1;
+        else wicketText = "OOPS!! Its All Out";
+        rootElement.render(<App />);
+      };
+
+      // Componet for button
+      const ScoreButton = () => {
         return (
           <>
-            <h1>SCORE KEEPER</h1>
-            <h2>Score: {runs}/{wicket}</h2>
             {/*we can't call the function directly in the curly brackets becoz when the app get render it will automatically gets calls so that's why we have to pass the refrence*/}
-            <button onClick = {clickOne}>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>Wicket</button>
+
+            <button onClick={clickOne}>1</button>
+
+            {/* we can't pass the argument in onclick  = {runInc(2)} like this will stuck into the infinte loop to avoid this we use incline function to pass the argument*/}
+            <button onClick={() => runInc(2)}>2</button>
+            <button onClick={() => runInc(3)}>3</button>
+            <button onClick={() => runInc(4)}>4</button>
+            <button onClick={() => runInc(5)}>5</button>
+            <button onClick={() => runInc(6)}>6</button>
+            <button onClick={wicketFunct}>Wicket</button>
           </>
         );
       };
 
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      const App = () => {
+        return (
+          <>
+            <h1>SCORE KEEPER</h1>
+            <h2>
+              Score: {runs}/{wicket}
+            </h2>
+            <ScoreButton />
+            <p>{wicketText}</p>
+          </>
+        );
+      };
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
     </script>
   </body>
 </html>
