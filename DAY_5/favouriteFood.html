@@ -8,7 +8,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercise 1(toggle the button)</title>
+    <title>Exercise 2(Favourite food item)</title>
     <link rel="stylesheet" href="favouriteFood.css" />
     <!-- React CDN Liks -->
     <script
@@ -50,6 +50,11 @@
           image:
             "https://res.cloudinary.com/dl26pbek4/image/upload/v1672294934/assets/pixzolo-photography-aeESmmFKH0M-unsplash_wag5lc.jpg",
         },
+        {
+          name: "Chicken Biryani",
+          image:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1672294935/assets/mario-raj-ysmeQt1dzcw-unsplash_ivdvre.jpg",
+        },
       ];
 
       //   variable to get the favourite food item
@@ -89,7 +94,7 @@
 
             {/*show the favourite food component when the item is clicked*/}
             {clicked && <FavouriteFood />}
-            
+
             <h2>Select your favourite food item!!!</h2>
 
             {/*iterate over all the array elements*/}
