@@ -1,0 +1,142 @@
+<!-- 
+    07-10-2023
+    1)Learn how to use form element here
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 6</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <style>
+      button {
+        padding: 15px;
+        margin-right: 10px;
+      }
+      input {
+        padding: 13px;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+      table{
+        margin: 10px auto;
+        color: blue;
+      
+      }
+      td{
+        padding: 15px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root" style="text-align: center"></div>
+    <script type="text/babel">
+      let valInc = 0; //to increase the value
+      let buttonValue = ""; // to get the button vlaue
+      let valueArray = []; // to display the output on the screen
+      let inputRef = React.createRef();
+
+      // generic function to increase the value
+      const valFunc = (num) => {
+        buttonValue = num;
+        rootElement.render(<App />);
+      };
+
+      //   this function prevents the browser to reloads when we press the submit button
+      // this is called syntetic event to prevent the default behaviour of HTML elements
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        valueArray.unshift(
+          <span>
+            {buttonValue}
+            {" , "}
+            {inputRef.current.value}
+          </span>
+        );
+        valInc += buttonValue;
+        console.log(inputRef.current);
+        console.log(inputRef.current.value);
+
+        buttonValue = "";
+        inputRef.current.value = "";
+        rootElement.render(<App />);
+      };
+
+      // Component for button
+      const ScoreButton = () => {
+        return (
+          <>
+            <div>
+              <button onClick={() => valFunc(1)}>1</button>
+              <button onClick={() => valFunc(2)}>2</button>
+              <button onClick={() => valFunc(3)}>3</button>
+              <button onClick={() => valFunc(4)}>4</button>
+            </div>
+          </>
+        );
+      };
+
+      //   Component for form
+      const Form = () => (
+        <>
+          <form onSubmit={handleSubmit}>
+            <input
+              value={buttonValue}
+              placeholder="Button clicked value is there"
+              required
+            />
+            <input ref={inputRef} placeholder="Write a special text!!" required/>
+            <button>Submit</button>
+          </form>
+        </>
+      );
+
+      const App = () => {
+        return (
+          <>
+            <h1>Lets play With Form in JSX!!!</h1>
+            <h2>Value Button: {valInc}</h2>
+            <ScoreButton />
+            <br />
+            <Form />
+            <hr />
+            
+            {/*to show the result when submit button is clicked*/}
+            <table border = "2">
+              <tbody>
+
+                {valueArray.map((val) => (
+                    <tr>
+                        <td>{val}</td>
+                    </tr>
+                  
+                ))}
+              </tbody>
+            </table>
+          </>
+        );
+      };
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
