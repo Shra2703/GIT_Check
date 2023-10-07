@@ -20,29 +20,39 @@
     <!-- End of Babel compiler CDN Links -->
 
     <style>
-      table{
+      table {
         margin: 10px auto;
         color: blue;
-      
       }
-      th{
+      th {
         padding: 15px;
         font-size: 20px;
       }
+      span {
+        /* border: 1px solid black; */
+        padding: 15px;
+        font-size: 18px;
+      }
+      .divAdjust {
+        width: 16.7rem;
+        height: auto;
+        border: 1px solid black;
+        margin: 10px auto;
+      }
     </style>
   </head>
-  
+
   <body>
     <div id="root" style="text-align: center"></div>
     <script type="text/babel">
-      let runs = 0;
+      let runs = 0; // Score or runs vaiable
       let wicket = 0;
-      let wicketText = "";
+      let wicketText = ""; //A text will show when 10 wickets get over
       let scoreArray = [];
 
       // fuction to increase the score by 1 #1
       const clickOne = () => {
-        scoreArray.push(1)
+        scoreArray.push(1);
         runs += 1;
         rootElement.render(<App />);
       };
@@ -50,13 +60,11 @@
       // we make a generic function to avoid the repetation
       // function to increase the score in generic manner #2
       const runInc = (num) => {
-       
-        if (wicket < 10){
+        if (wicket < 10) {
           runs += num;
-          if(num == 0)
-            scoreArray.push(".");
+          if (num == 0) scoreArray.push(".");
           else scoreArray.push(num);
-        } 
+        }
         rootElement.render(<App />);
       };
 
@@ -65,8 +73,7 @@
         if (wicket < 10) {
           wicket += 1;
           scoreArray.push("W");
-        }
-        else wicketText = "OOPS!! Its All Out";
+        } else wicketText = "OOPS!! Its All Out";
         rootElement.render(<App />);
       };
 
@@ -74,7 +81,7 @@
       const ScoreButton = () => {
         return (
           <>
-          <button onClick={() => runInc(0)}>0</button>
+            <button onClick={() => runInc(0)}>0</button>
             {/*we can't call the function directly in the curly brackets becoz when the app get render it will automatically gets calls so that's why we have to pass the refrence*/}
 
             <button onClick={clickOne}>1</button>
@@ -90,38 +97,7 @@
         );
       };
 
-      const TableComponent = () => (
-        <>
-        <div>
-          <table border = "1">
-            <thead>
-              <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                scoreArray.map((b) => (
-                  <tr>
-                    <td>{b}</td>
-                    <td>{b}</td>
-                    <td>{b}</td>
-                    <td>{b}</td>
-                    <td>{b}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-          </div>
-        </>
-      )
-
+      // App component
       const App = () => {
         return (
           <>
@@ -129,11 +105,25 @@
             <h2>
               Score: {runs}/{wicket}
             </h2>
+
             <ScoreButton />
             <p>{wicketText}</p>
 
             <h3>RESULT!!!</h3>
-            <TableComponent />
+
+            {/*To show the output on screen*/}
+            <div className="divAdjust">
+              {scoreArray.map((b, index) => (
+                <>
+                  {index % 6 == 0 ? (
+                    <>
+                      <br /> <hr />{" "}
+                    </>
+                  ) : null}
+                  <span>{b}</span>
+                </>
+              ))}
+            </div>
           </>
         );
       };
