@@ -1,0 +1,154 @@
+<!-- 
+    08-10-2023
+    1)Exercise 4 (quotify app)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 7(quotify app)</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <style>
+      h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2.5rem;
+        letter-spacing: 1.5px;
+        color: rgb(120, 0, 255);
+      }
+      .App {
+        width: 25%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      input {
+        outline: none;
+        border: 1px solid #000;
+        padding: 5px;
+        padding-left: 10px;
+        font-size: 1.1rem;
+      }
+
+      .quotes {
+        margin: 0px auto;
+        margin-top: 20px;
+        gap: 15px;
+        /* border: 1px solid black; */
+        width: 35%;
+      }
+
+      .quotes div {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgb(238, 238, 238);
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 20px;
+      }
+
+      .quotes div:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+
+      i,
+      b {
+        font-size: 1.1rem;
+      }
+
+      b {
+        align-self: flex-end;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root" style="text-align: center"></div>
+    <script type="text/babel">
+      let quoteArr = [];
+      let nameRef = React.createRef();
+      let quoteRef = React.createRef();
+
+      //  functions to clear the output
+      const clearInput = () => {
+        nameRef.current.value = "";
+        quoteRef.current.value = "";
+      };
+
+      //   function for handling the div Enter button is press
+      const handleQuote = (e) => {
+        let name = nameRef.current.value;
+        let quote = quoteRef.current.value;
+        if (e.key != "Enter") return;
+        quoteArr.unshift({ name, quote });
+        clearInput();
+        rootElement.render(<App />);
+      };
+
+      //   Component for form
+      const Form = () => (
+        <>
+          <form className="App">
+            <input
+              type="name"
+              placeholder="Enter Name"
+              ref={nameRef}
+              required
+            />
+            <input
+              placeholder="Enter quote"
+              ref={quoteRef}
+              onKeyPress={handleQuote}
+              required
+            />
+          </form>
+        </>
+      );
+
+      //   App Component
+      const App = () => {
+        return (
+          <>
+            <h2>What's the Quote🤔!!!!</h2>
+            <br />
+            <Form />
+            <h3>Press Enter!!!</h3>
+
+            {/*resultant div*/}
+            <div className="quotes">
+              {quoteArr.map((e, index) => (
+                <div key={index}>
+                  <i>"{e.quote}"</i>
+                  <b>~{e.name}</b>
+                </div>
+              ))}
+            </div>
+          </>
+        );
+      };
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
