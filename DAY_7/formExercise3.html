@@ -1,0 +1,124 @@
+<!-- 
+    08-10-2023
+    1)Exercise 2 for Form element used onChange Event
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 7</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <style>
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        padding: 13px;
+        width: 60%;
+        margin: 0 auto;
+        /* border: 1px solid black; */
+      }
+      input,
+      button {
+        margin: 0 auto 10px;
+        padding: 10px;
+        font-size: 14px;
+        width: 50%;
+      }
+      table{
+        margin: 0 auto;
+      }
+      th{
+        padding: 5px;
+        color: blue;
+      }
+      td{
+        padding: 5px;
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root" style="text-align: center"></div>
+    <script type="text/babel">
+      let nameRef = React.createRef();
+      let marksRef = React.createRef();
+      let studArray = [];
+
+      //   function for submit and pushing the values in the array
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        studArray.push(nameRef.current.value + "," + marksRef.current.value);
+        // console.log(studArray)
+        rootElement.render(<App />);
+        nameRef.current.value = "";
+        marksRef.current.value = "";
+      };
+
+      //   Component for form
+      const Form = () => (
+        <>
+          <form className="inputs" onSubmit={handleSubmit}>
+            <input type="name" placeholder="Enter Your Name" ref={nameRef} required/>
+            <input placeholder="Enter your Marks" ref={marksRef} required />
+
+            <button>Submit</button>
+          </form>
+        </>
+      );
+
+    //   Table componet to show the result
+      const TableComponent = () => (
+        <>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Student Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              {studArray.map((student, index) => (
+                <tr key={index}>
+                  <td>{student.split(",")[0]}</td>
+                  <td>{student.split(",")[1]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+
+      //   App Component
+      const App = () => {
+        return (
+          <>
+            <h1>Add Students Details in the Table!!!</h1>
+            <br />
+            <Form />
+            <TableComponent />
+          </>
+        );
+      };
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
