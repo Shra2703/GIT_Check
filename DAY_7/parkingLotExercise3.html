@@ -1,0 +1,158 @@
+<!-- 
+    08-10-2023
+    1)Exercise 3 Parking Lot (count of vehicles)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 7(Parking Lot)</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <style>
+      h1 {
+        text-align: center;
+        color: brown;
+      }
+      ol {
+        text-align: center;
+        list-style-type: none;
+        
+      }
+      .listDiv {
+        width: 50%;
+        height: auto;
+        margin: 0 auto;
+        /* border: 1px solid black; */
+        padding: 10px;
+        background-color: beige;
+      }
+      li {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+      button {
+        margin-left: 10px;
+        font-size: 20px;
+        padding: 5px;
+        background-color: transparent;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let carsCount = 0;
+      let bikeCount = 0;
+      let bicycleCount = 0;
+
+      // function to increase the values of the variable
+      const handleInc = (vehicle) => {
+        if (vehicle == "car") carsCount += 1;
+        else if (vehicle == "bike") bikeCount += 1;
+        else if (vehicle == "bicycle") bicycleCount += 1;
+        rootElement.render(<App />);
+      };
+
+      // function to decrease the values of the variable
+      const handleDesc = (vehicle) => {
+        if (vehicle == "car" && carsCount > 0) carsCount -= 1;
+        else if (vehicle == "bike" && bikeCount > 0) bikeCount -= 1;
+        else if (vehicle == "bicycle" && bicycleCount > 0) bicycleCount -= 1;
+        rootElement.render(<App />);
+      };
+
+      //   Component for List
+      const List = () => (
+        <>
+          <div>
+            <ol className="listDiv">
+              <li>
+                Cars:{carsCount}
+                <button
+                  onClick={() => {
+                    handleInc("car");
+                  }}
+                >
+                  Increase
+                </button>
+                <button
+                  onClick={() => {
+                    handleDesc("car");
+                  }}
+                >
+                  Decrease
+                </button>
+              </li>
+              <li>
+                Bike: {bikeCount}
+                <button
+                  onClick={() => {
+                    handleInc("bike");
+                  }}
+                >
+                  Increase
+                </button>
+                <button
+                  onClick={() => {
+                    handleDesc("bike");
+                  }}
+                >
+                  Decrease
+                </button>
+              </li>
+              <li>
+                Bicycle: {bicycleCount}
+                <button
+                  onClick={() => {
+                    handleInc("bicycle");
+                  }}
+                >
+                  Increase
+                </button>
+                <button
+                  onClick={() => {
+                    handleDesc("bicycle");
+                  }}
+                >
+                  Decrease
+                </button>
+              </li>
+            </ol>
+          </div>
+        </>
+      );
+
+      //   App Component
+      const App = () => {
+        return (
+          <>
+            <h1>Count of Vehicle in Parking Lot!!!</h1>
+            <br />
+            <List />
+          </>
+        );
+      };
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
