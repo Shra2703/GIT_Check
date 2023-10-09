@@ -25,6 +25,12 @@
     <!-- End of Babel compiler CDN Links -->
 
     <style>
+      h1 {
+        color: brown;
+      }
+      h2{
+        color: rgb(17, 0, 255);
+      }
       .inputs {
         display: flex;
         flex-direction: column;
@@ -33,15 +39,17 @@
       }
 
       form {
-        width: 60%;
+        width: 100%;
         display: flex;
         flex-direction: column;
+        /* justify-content: center; */
         gap: 10px;
+        /* border: 1px solid black; */
+        margin: 0 auto;
       }
 
       form div {
         display: flex;
-        justify-content: center;
         gap: 10px;
       }
 
@@ -49,6 +57,10 @@
         width: 120px;
         padding-block: 5px;
         cursor: pointer;
+        margin-bottom: 15px;
+      }
+      table {
+        margin: 0 auto;
       }
 
       th,
@@ -57,15 +69,17 @@
       }
 
       input {
+        width: 35%;
+
         padding: 5px;
         font-size: 1.1rem;
       }
 
-      .served {
+      .red {
         background-color: red;
       }
-      .dining {
-        background-color: lime;
+      .cursor {
+        /* background-color: lime; */
         cursor: pointer;
       }
     </style>
@@ -118,7 +132,7 @@
       };
 
       // fucntion for decrease the seats count
-      const seatsIncDesc = () => {
+      const seatsDesc = () => {
         let guestCount = guestRef.current.value;
         if (seats > 0 && guestCount <= seats) seats -= guestCount;
         else alert("OOPS Seats are not Available!!!");
@@ -138,7 +152,7 @@
         let guestCount = guestRef.current.value;
         let phone = phoneRef.current.value;
         let checkIn = new Date();
-        let checkOut = null;
+        let checkOut = "-";
         let checkOutFlag = false;
         let checkOutText = "Click to CheckOut";
         if (seats > 0 && guestCount <= seats)
@@ -157,7 +171,7 @@
       const handleSubmit = (e) => {
         e.preventDefault();
         addEntry();
-        seatsIncDesc();
+        seatsDesc();
         clearInputs();
         console.log(resArr);
         rootElement.render(<App />);
@@ -215,10 +229,16 @@
                   <td>{guest.phone}</td>
                   <td>{guest.checkIn.toLocaleTimeString()}</td>
                   <td>{guest.checkOut}</td>
-                  <td onClick={() => checkOutFunc(guest, index)}>
+                  <td
+                    onClick={() => checkOutFunc(guest, index)}
+                    className="cursor"
+                  >
                     {guest.checkOutText}
                   </td>
-                  <td onClick={() => removeEntry(guest, index)}>
+                  <td
+                    onClick={() => removeEntry(guest, index)}
+                    className="cursor red"
+                  >
                     Remove Entry
                   </td>
                 </tr>
@@ -234,7 +254,7 @@
           <>
             <h1>Customer Management Table!!!</h1>
             <h2>Total Capacity: 25</h2>
-            <h2>Total Seats Left:{seats}</h2>
+            <h2>Total Seats Left: {seats}</h2>
             <br />
             <Form />
             <Result />
