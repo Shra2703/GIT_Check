@@ -78,16 +78,49 @@
       let seats = 25;
       let capacity = 25;
       let resArr = [];
+      let checkOutFlag = false;
 
       // Refs for Inputs
       let nameRef = React.createRef();
       let guestRef = React.createRef();
       let phoneRef = React.createRef();
 
+      // function to increase the seats when checkout or remove entry calls
+      const seatsInc = (guest) => {
+        if (!guest.checkOutFlag) seats += parseInt(guest.guestCount);
+        rootElement.render(<App />);
+      };
+
+      // function for checkout
+      const checkOutFunc = (guest, index) => {
+        resArr.forEach((c, i) => {
+          if (i == index) {
+            c.checkOut = new Date().toLocaleTimeString();
+            c.checkOutText = "Served";
+            seatsInc(guest);
+            c.checkOutFlag = true;
+          }
+        });
+
+        // console.log(guest.checkOut);
+        // console.log(guest.checkOutFlag);
+        // console.log(seats);
+        rootElement.render(<App />);
+      };
+
+      //   function to remove entry from the table
+      const removeEntry = (guest, index) => {
+        let result = resArr.filter((e, i) => i != index);
+        resArr = result;
+        seatsInc(guest);
+        console.log("result", result);
+        rootElement.render(<App />);
+      };
+
       // fucntion for decrease the seats count
       const seatsIncDesc = () => {
         let guestCount = guestRef.current.value;
-        if (seats > 0 && guestCount <= capacity) seats -= guestCount;
+        if (seats > 0 && guestCount <= seats) seats -= guestCount;
         else alert("OOPS Seats are not Available!!!");
         rootElement.render(<App />);
       };
@@ -106,8 +139,18 @@
         let phone = phoneRef.current.value;
         let checkIn = new Date();
         let checkOut = null;
-        if (seats > 0 && guestCount <= capacity)
-          resArr.unshift({ guestCount, name, phone, checkIn, checkOut });
+        let checkOutFlag = false;
+        let checkOutText = "Click to CheckOut";
+        if (seats > 0 && guestCount <= seats)
+          resArr.unshift({
+            guestCount,
+            name,
+            phone,
+            checkIn,
+            checkOut,
+            checkOutText,
+            checkOutFlag,
+          });
       };
 
       //   function to handle the submit
@@ -138,7 +181,7 @@
               required
             />
             <input
-              type="phone"
+              type="tel"
               placeholder="Enter Phone Number"
               ref={phoneRef}
               required
@@ -171,9 +214,13 @@
                   <td>{guest.name}</td>
                   <td>{guest.phone}</td>
                   <td>{guest.checkIn.toLocaleTimeString()}</td>
-                  <td></td>
-                  <td></td>
-                  <td>Remove Entry</td>
+                  <td>{guest.checkOut}</td>
+                  <td onClick={() => checkOutFunc(guest, index)}>
+                    {guest.checkOutText}
+                  </td>
+                  <td onClick={() => removeEntry(guest, index)}>
+                    Remove Entry
+                  </td>
                 </tr>
               ))}
             </tbody>
