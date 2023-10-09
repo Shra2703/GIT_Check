@@ -1,0 +1,202 @@
+<!-- 
+    09-10-2023
+    1)Mini Project(Customer Management Table)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 8(CMT)</title>
+    <!-- React CDN Liks -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--End of React CDN Liks -->
+
+    <!-- Babel compiler CDN Links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- End of Babel compiler CDN Links -->
+
+    <style>
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+      }
+
+      form {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      form div {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      button {
+        width: 120px;
+        padding-block: 5px;
+        cursor: pointer;
+      }
+
+      th,
+      td {
+        padding: 10px;
+      }
+
+      input {
+        padding: 5px;
+        font-size: 1.1rem;
+      }
+
+      .served {
+        background-color: red;
+      }
+      .dining {
+        background-color: lime;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root" style="text-align: center"></div>
+    <script type="text/babel">
+      // variable
+      let seats = 25;
+      let capacity = 25;
+      let resArr = [];
+
+      // Refs for Inputs
+      let nameRef = React.createRef();
+      let guestRef = React.createRef();
+      let phoneRef = React.createRef();
+
+      // fucntion for decrease the seats count
+      const seatsIncDesc = () => {
+        let guestCount = guestRef.current.value;
+        if (seats > 0 && guestCount <= capacity) seats -= guestCount;
+        else alert("OOPS Seats are not Available!!!");
+        rootElement.render(<App />);
+      };
+
+      //   function to clear the inputs after adding the entry
+      const clearInputs = () => {
+        nameRef.current.value = "";
+        guestRef.current.value = "";
+        phoneRef.current.value = "";
+      };
+
+      //   function to add entry in the array
+      const addEntry = () => {
+        let name = nameRef.current.value;
+        let guestCount = guestRef.current.value;
+        let phone = phoneRef.current.value;
+        let checkIn = new Date();
+        let checkOut = null;
+        if (seats > 0 && guestCount <= capacity)
+          resArr.unshift({ guestCount, name, phone, checkIn, checkOut });
+      };
+
+      //   function to handle the submit
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        addEntry();
+        seatsIncDesc();
+        clearInputs();
+        console.log(resArr);
+        rootElement.render(<App />);
+      };
+
+      //   Component for form
+      const Form = () => (
+        <>
+          <form className="inputs" onSubmit={handleSubmit}>
+            <input
+              type="number"
+              placeholder="Enter no. of Guest"
+              ref={guestRef}
+              min="1"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Enter Your Name"
+              ref={nameRef}
+              required
+            />
+            <input
+              type="phone"
+              placeholder="Enter Phone Number"
+              ref={phoneRef}
+              required
+            />
+            <button type="submit">Add Entry</button>
+          </form>
+        </>
+      );
+
+      //   Component to show the result in the form of table on screen
+      const Result = () => (
+        <>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Count</th>
+                <th>Name</th>
+                <th>Phone No</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+                <th>Remove Entry</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {resArr.map((guest, index) => (
+                <tr key={index}>
+                  <td>{guest.guestCount}</td>
+                  <td>{guest.name}</td>
+                  <td>{guest.phone}</td>
+                  <td>{guest.checkIn.toLocaleTimeString()}</td>
+                  <td></td>
+                  <td></td>
+                  <td>Remove Entry</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+
+      //   App Component
+      const App = () => {
+        return (
+          <>
+            <h1>Customer Management Table!!!</h1>
+            <h2>Total Capacity: 25</h2>
+            <h2>Total Seats Left:{seats}</h2>
+            <br />
+            <Form />
+            <Result />
+          </>
+        );
+      };
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
