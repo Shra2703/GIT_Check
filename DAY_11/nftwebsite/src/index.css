@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* nav bar styling */
+.nav {
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: antiquewhite;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.nav .logo {
+  font-size: 35px;
+  /* border: 1px solid black; */
+  padding: 10px;
+}
+
+.nav .menu {
+  width: 30%;
+  /* border: 1px solid black; */
+}
+
+.nav .menu ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  overflow: hidden;
+  /* border: 1px solid black; */
+}
+.nav .menu ul li {
+  list-style-type: none;
+}
+.nav .menu ul li:nth-child(3) {
+  margin-right: 10px;
+}
+
+/* nav bar stylig complete */
+
+/* hero section styling */
+
+h3 {
+  text-align: center;
+  font-size: 2rem;
+}
+img {
+  margin: 0 auto;
+  text-align: center;
+  margin-left: 450px;
+  height: 20rem;
+  width: auto;
+  border: 1px solid black;
+}
+
+/* hero section styling complete*/
+
+/* about section styling complete*/
+
+.para{
+  width: 50%;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
+  padding: 7px;
+  text-align:justify;
+  background-color: rgb(235, 226, 217);
+  border-radius: 5px;
+}
