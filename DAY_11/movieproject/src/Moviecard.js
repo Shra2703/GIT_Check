@@ -1,7 +1,6 @@
 import React from "react";
 
 class Moviecard extends React.Component {
-  starCount = 0;
   rating = 5;
   // constructor for state
   constructor() {
@@ -11,6 +10,7 @@ class Moviecard extends React.Component {
       plot: "Supernatural powers are there in this movie",
       price: 199,
       rating: 8.9,
+      starCount: 0,
     };
     // we can bind it here or bind when we are passing the refrence or we can use arrow function.
     this.incStars = this.incStars.bind(this);
@@ -18,15 +18,69 @@ class Moviecard extends React.Component {
   incStars() {
     console.log("increase the count");
 
-    // if (this.rating <= 5) this.starCount++;
+    if(this.state.starCount >= 5){
+      return;
+    }
+
+    // if (this.rating <= 5) this.starCount++; we can't update it in this way because the output will not show on UI because we need to render it, and we can't re-render it because the rendering is done in another function that's why we use setState() function.
+
+    // there are 2 forms to use setState() #form1
+    this.setState({
+      starCount: this.state.starCount + 0.5
+    })
+    
+    // 1) setState() do batching in #1 form it will batch them together and render only the last one it we do +2 then only that last will get rendered.
+
+    // this.setState({
+    //   starCount: this.state.starCount + 0.5
+    // })
+    // this.setState({
+    //   starCount: this.state.starCount + 0.5
+    // })
+
+    //2) setState() is asynchronous first it will call outside the callback one and then setSate() one after that inside the callback will be called
+
+    // this.setState({
+    //   starCount: this.state.starCount + 0.5
+    // },() => {
+    //   console.log("inside the callback", this.state.starCount)
+    // })
+
+    // console.log("outside the callback", this.state.starCount)
   }
   descStars = () => {
     console.log("decrease the count");
-    // if (this.rating >= 0) this.starCount--;
-  }
+
+    if(this.state.starCount <= 0){
+      return;
+    }
+    // #form 2 setState 
+    // used when we need to bother the previous state in the component
+
+    this.setState((prevState) => {
+      return{
+        starCount: prevState.starCount - 0.5
+      }
+    })
+
+     // 1) setState() do not do batching in #2 form it will call each and every setState() funct and render only once this happens because we are using previous state in the callback.
+
+    // this.setState((prevState) => {
+    //   return{
+    //     starCount: prevState.starCount - 0.5
+    //   }
+    // })
+    // this.setState((prevState) => {
+    //   return{
+    //     starCount: prevState.starCount - 0.5
+    //   }
+    // })
+    
+    
+  };
   render() {
     // destructring the data
-    const { plot, price, rating } = this.state;
+    const { plot, price, rating, starCount } = this.state;
 
     return (
       <>
@@ -69,7 +123,7 @@ class Moviecard extends React.Component {
                     onClick={this.incStars}
                   />
 
-                  <span className="starCount">{this.starCount}</span>
+                  <span className="starCount">{starCount}</span>
                 </div>
                 <button className="favourite-btn">Favourite</button>
                 <button className="cart-btn">Add to Cart</button>
