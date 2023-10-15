@@ -13,7 +13,7 @@ body {
   margin-top: 30px;
   padding: 0 20px;
   box-sizing: border-box;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .movie-card {
   background: #fff;
@@ -39,7 +39,7 @@ body {
 .movie-card .right {
   position: relative;
   flex: 10;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .movie-card .title {
   padding: 10px 20px;
@@ -63,7 +63,7 @@ body {
   width: 100%;
   padding: 10px 20px;
   box-sizing: border-box;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .footer .rating {
   font-size: 20px;
