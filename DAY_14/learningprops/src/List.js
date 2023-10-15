@@ -1,5 +1,6 @@
 import { Component } from "react";
 import ListItem from "./ListItem";
+import ListItemFunc from "./ListItemFunc";
 
 class List extends Component {
   render() {
@@ -26,10 +27,27 @@ class List extends Component {
             altText="Twitter"
             bgColor="blanchedalmond"
           />
+          <ListItem />
+
+          {/* props using function */}
+          <ListItemFunc
+            srcAdd="https://cdn-icons-png.flaticon.com/128/4138/4138124.png"
+            name="Instagram"
+            altText="Instagram"
+            bgColor="green"
+          />
         </div>
       </>
     );
   }
 }
+
+// default props used when we forgot to give some values to the component
+ListItem.defaultProps = {
+  srcAdd: "https://cdn-icons-png.flaticon.com/128/3670/3670209.png",
+  name: "Youtube",
+  altText: "Youtube",
+  bgColor: "default",
+};
 
 export default List;
