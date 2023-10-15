@@ -100,7 +100,7 @@ class Moviecard extends React.Component {
   // main render function to render the HTML elments
   render() {
     // destructring the data
-    const { plot, price, rating, starCount, fav,cart } = this.state;
+    const { plot, price, rating, starCount, fav, cart } = this.state;
 
     return (
       <>
@@ -170,13 +170,10 @@ class Moviecard extends React.Component {
                 >
                   {cart ? "Remove from Cart" : "Add to Cart"}
                 </button>
-
-                
               </div>
             </div>
           </div>
         </div>
-        <h1>Moviecard</h1>
       </>
     );
   }
