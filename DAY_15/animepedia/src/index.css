@@ -13,26 +13,31 @@ code {
     monospace;
 }
 
+/* main section styling */
 .main{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 45rem;
   height: auto;
   margin: 0px auto;
-  margin-top: 50px;
+  margin-top: 5px;
   background-color:white;
+  border-radius: 10px;
+  height: 37rem;
+  overflow-y: auto;
 }
 
 h1{
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: brown;
-  margin-top: 50px;
+  margin-top: 20px;
   font-size: 2.6rem;
 
 }
 
+/* card styling */
 .card{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 80%;
   height: auto;
   margin: 0px auto;
@@ -40,12 +45,23 @@ h1{
   margin-bottom: 10px;
   background-color:#8b0000;
   background-color:black;
+  border-radius: 10px;
 }
 .card img{
   width: 100%;
   height: auto;
+  border-radius: 10px;
+
 }
 
+/* paragraph text of about section */
+.about{
+  color: white;
+  text-align:center;
+  margin: 5px;
+}
+
+/* footer of the card */
 .footer{
   display: flex;
   justify-content: space-between;
