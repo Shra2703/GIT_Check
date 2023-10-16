@@ -1,32 +1,15 @@
 import React from "react";
 
 class MoviecardProps extends React.Component {
-  
-
- 
-
-  // handle the favourite btn
-  handleFavourite = () => {
-    this.setState({
-      fav: !this.state.fav,
-    });
-  };
-
-  // handle the favourite btn
-  handleCart = () => {
-    this.setState({
-      cart: !this.state.cart,
-    });
-  };
-
   // main render function to render the HTML elments
   render() {
     // destructring the data
     // const { title, plot, price, rating, starCount, fav, cart } = this.props;
-    const { title, plot, price, rating, starCount, fav, cart,poster } = this.props.movieProp;
-    const {movieProp, incStars,descStars} = this.props;
-    console.log(this.props.movieProp)
-
+    const { title, plot, price, rating, starCount, fav, cart, poster } =
+      this.props.movieProp;
+    const { movieProp, incStars, descStars, handleFavourite, handleCart } =
+      this.props;
+    console.log(this.props.movieProp);
 
     return (
       <>
@@ -34,10 +17,7 @@ class MoviecardProps extends React.Component {
           <div className="movie-card">
             {/* left side of movie card */}
             <div className="left">
-              <img
-                src={poster}
-                alt="poster"
-              />
+              <img src={poster} alt="poster" />
             </div>
 
             {/* right side of  movie card*/}
@@ -76,14 +56,14 @@ class MoviecardProps extends React.Component {
                 {fav ? (
                   <button
                     className="unfavourite-btn"
-                    onClick={this.handleFavourite}
+                    onClick={() => handleFavourite(movieProp)}
                   >
                     Un-Favourite
                   </button>
                 ) : (
                   <button
                     className="favourite-btn"
-                    onClick={this.handleFavourite}
+                    onClick={() => handleFavourite(movieProp)}
                   >
                     Favourite
                   </button>
@@ -92,7 +72,7 @@ class MoviecardProps extends React.Component {
                 {/* #2 way to toggling*/}
                 <button
                   className={cart ? "unfavourite-btn" : "cart-btn"}
-                  onClick={this.handleCart}
+                  onClick={() => handleCart(movieProp)}
                 >
                   {cart ? "Remove from Cart" : "Add to Cart"}
                 </button>

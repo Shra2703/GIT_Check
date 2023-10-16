@@ -76,6 +76,28 @@ class MovieList extends Component {
     });
     console.log(movies)
   };
+
+  // handle the favourite btn
+  handleFavourite = (movie) => {
+    const {movies} = this.state;
+    const mid = movies.indexOf(movie);
+
+    movies[mid].fav = !movies[mid].fav
+    this.setState({
+      movies: movies,
+    });
+  };
+
+  // handle the cart btn
+  handleCart = (movie) => {
+    const {movies} = this.state;
+    const mid = movies.indexOf(movie);
+    movies[mid].cart = !movies[mid].cart
+    this.setState({
+      movies: movies
+    });
+  };
+
   render() {
     // const { title, plot, price, rating, starCount, fav, cart } = this.state;
     const { movies } = this.state;
@@ -97,6 +119,8 @@ class MovieList extends Component {
             movieProp={movie}
             incStars={this.handleIncStars}
             descStars={this.handleDescStars}
+            handleFavourite = {this.handleFavourite}
+            handleCart = {this.handleCart}
           />
         ))}
       </>
