@@ -8,7 +8,7 @@ class Animecard extends Component {
         return(
             <>
                 <div className="card">
-                    <img src = "" alt ="anime image"/>
+                    <img src = "https://wallpapers.com/images/featured/anime-naruto-pictures-mg0inlcvuxq3z7j3.jpg" alt ="anime image"/>
                     <div className="footer">
                         <p className="text">Naruto</p>
                         <button>About show</button>
