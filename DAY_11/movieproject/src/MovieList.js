@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Moviecard from "./Moviecard";
+// import Moviecard from "./Moviecard";
 import MoviecardProps from "./MoviecardProps";
 
 class MovieList extends Component {
