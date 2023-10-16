@@ -1,0 +1,131 @@
+import React from "react";
+
+class MoviecardProps extends React.Component {
+  // increase the stars function
+  incStars = () => {
+    console.log("increase the count");
+
+    if (this.state.starCount >= 5) {
+      return;
+    }
+
+    this.setState({
+      starCount: this.state.starCount + 0.5,
+    });
+  };
+
+  // decrease the stars function
+  descStars = () => {
+    console.log("decrease the count");
+
+    if (this.state.starCount <= 0) {
+      return;
+    }
+
+    this.setState((prevState) => {
+      return {
+        starCount: prevState.starCount - 0.5,
+      };
+    });
+  };
+
+  // handle the favourite btn
+  handleFavourite = () => {
+    this.setState({
+      fav: !this.state.fav,
+    });
+  };
+
+  // handle the favourite btn
+  handleCart = () => {
+    this.setState({
+      cart: !this.state.cart,
+    });
+  };
+
+  // main render function to render the HTML elments
+  render() {
+    // destructring the data
+    // const { title, plot, price, rating, starCount, fav, cart } = this.props;
+    const { title, plot, price, rating, starCount, fav, cart,poster } = this.props.movieProp;
+    console.log(this.props.movieProp)
+
+
+    return (
+      <>
+        <div className="main">
+          <div className="movie-card">
+            {/* left side of movie card */}
+            <div className="left">
+              <img
+                src={poster}
+                alt="poster"
+              />
+            </div>
+
+            {/* right side of  movie card*/}
+            <div className="right">
+              <div className="title">{title}</div>
+              <div className="plot">{plot}</div>
+              <div className="price">Rs. {price}</div>
+
+              {/* footer under right side */}
+              <div className="footer">
+                <div className="rating">{rating}</div>
+                <div className="star-dis">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png"
+                    alt="rating desc"
+                    className="str-btn"
+                    onClick={this.descStars}
+                  />
+
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/477/477406.png"
+                    alt="rating"
+                    className="stars"
+                  />
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/9312/9312231.png"
+                    alt="rating inc"
+                    className="str-btn"
+                    onClick={this.incStars}
+                  />
+
+                  <span className="starCount">{starCount}</span>
+                </div>
+
+                {/* #1 way to toggle the favourite and unfavourite button */}
+                {fav ? (
+                  <button
+                    className="unfavourite-btn"
+                    onClick={this.handleFavourite}
+                  >
+                    Un-Favourite
+                  </button>
+                ) : (
+                  <button
+                    className="favourite-btn"
+                    onClick={this.handleFavourite}
+                  >
+                    Favourite
+                  </button>
+                )}
+
+                {/* #2 way to toggling*/}
+                <button
+                  className={cart ? "unfavourite-btn" : "cart-btn"}
+                  onClick={this.handleCart}
+                >
+                  {cart ? "Remove from Cart" : "Add to Cart"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+export default MoviecardProps;
