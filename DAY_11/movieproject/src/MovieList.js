@@ -44,6 +44,38 @@ class MovieList extends Component {
       ],
     };
   }
+
+  // increase the stars function
+  handleIncStars = (movie) => {
+    const { movies } = this.state;
+    console.log("movie", movie);
+    const mid = movies.indexOf(movie);
+    if (movies[mid].starCount >= 5) {
+      return;
+    }
+
+    movies[mid].starCount += 0.5;
+    this.setState({
+      movies: movies,
+    });
+  };
+
+  // decrease the stars function
+  handleDescStars = (movie) => {
+    console.log("decrease the count");
+    const { movies } = this.state;
+    let mid = movies.indexOf(movie);
+    if (movies[mid].starCount <= 0) {
+      return;
+    }
+    console.log("1sr0", movies)
+    movies[mid].starCount -= 0.5;
+    console.log("2ns", movies)
+    this.setState({
+      movies:movies
+    });
+    console.log(movies)
+  };
   render() {
     // const { title, plot, price, rating, starCount, fav, cart } = this.state;
     const { movies } = this.state;
@@ -59,8 +91,13 @@ class MovieList extends Component {
             cart = {cart}
         /> */}
 
+        {/* all the movies will be shown in the card */}
         {movies.map((movie) => (
-          <MoviecardProps movieProp={movie} />
+          <MoviecardProps
+            movieProp={movie}
+            incStars={this.handleIncStars}
+            descStars={this.handleDescStars}
+          />
         ))}
       </>
     );

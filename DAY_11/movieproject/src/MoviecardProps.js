@@ -1,33 +1,9 @@
 import React from "react";
 
 class MoviecardProps extends React.Component {
-  // increase the stars function
-  incStars = () => {
-    console.log("increase the count");
+  
 
-    if (this.state.starCount >= 5) {
-      return;
-    }
-
-    this.setState({
-      starCount: this.state.starCount + 0.5,
-    });
-  };
-
-  // decrease the stars function
-  descStars = () => {
-    console.log("decrease the count");
-
-    if (this.state.starCount <= 0) {
-      return;
-    }
-
-    this.setState((prevState) => {
-      return {
-        starCount: prevState.starCount - 0.5,
-      };
-    });
-  };
+ 
 
   // handle the favourite btn
   handleFavourite = () => {
@@ -48,6 +24,7 @@ class MoviecardProps extends React.Component {
     // destructring the data
     // const { title, plot, price, rating, starCount, fav, cart } = this.props;
     const { title, plot, price, rating, starCount, fav, cart,poster } = this.props.movieProp;
+    const {movieProp, incStars,descStars} = this.props;
     console.log(this.props.movieProp)
 
 
@@ -77,7 +54,7 @@ class MoviecardProps extends React.Component {
                     src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png"
                     alt="rating desc"
                     className="str-btn"
-                    onClick={this.descStars}
+                    onClick={() => descStars(movieProp)}
                   />
 
                   <img
@@ -89,7 +66,7 @@ class MoviecardProps extends React.Component {
                     src="https://cdn-icons-png.flaticon.com/128/9312/9312231.png"
                     alt="rating inc"
                     className="str-btn"
-                    onClick={this.incStars}
+                    onClick={() => incStars(movieProp)}
                   />
 
                   <span className="starCount">{starCount}</span>
