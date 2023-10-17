@@ -1,11 +1,12 @@
 import React from "react";
 import MovieList from "./MovieList";
 import "./style.css"
+import Navbar from "./Navbar";
 
 function App1() {
   return (
     <>
-      <h1>Movie app</h1>
+      <Navbar />
       <MovieList />
     </>
   );
