@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,72 +9,72 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 /* main section styling */
-.main{
+.main {
   /* border: 1px solid black; */
   width: 45rem;
   height: auto;
   margin: 0px auto;
   margin-top: 5px;
-  background-color:white;
+  background-color: white;
   border-radius: 10px;
   height: 37rem;
   overflow-y: auto;
 }
 
-h1{
+h1 {
   text-align: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: brown;
   margin-top: 20px;
   font-size: 2.6rem;
-
 }
 
 /* card styling */
-.card{
+.card {
   /* border: 1px solid black; */
   width: 80%;
   height: auto;
   margin: 0px auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color:#8b0000;
-  background-color:black;
+  background-color: #8b0000;
+  background-color: black;
   border-radius: 10px;
 }
-.card img{
+.card img {
   width: 100%;
   height: auto;
   border-radius: 10px;
-
 }
 
 /* paragraph text of about section */
-.about{
+.about {
   color: white;
-  text-align:center;
+  text-align: center;
   margin: 5px;
 }
 
 /* footer of the card */
-.footer{
+.footer {
   display: flex;
   justify-content: space-between;
 }
-.footer p{
+.footer p {
   font-size: 25px;
   color: white;
   font-weight: 700;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin-left:10px ;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-left: 10px;
 }
-.footer button{
-  width:7rem;
+.footer button {
+  width: 7rem;
   height: 3rem;
   margin-top: 20px;
   margin-right: 10px;
@@ -86,3 +86,28 @@ h1{
   border: 1px solid white;
 }
 
+/* charachter div styling  */
+.charMain {
+  /* padding-bottom: 1px; */
+  display: flex;
+  overflow-x: auto;
+}
+.charDiv {
+  /* border: 1px solid white; */
+  width: 100px;
+  height: auto;
+  background-color: dimgrey;
+  border-radius: 5px;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+.charDiv img {
+  width: 100%;
+  height: 60%;
+  border-radius: 5px;
+}
+.charDiv p {
+  color: white;
+  text-align: center;
+  margin: 0px;
+}
