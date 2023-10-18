@@ -9,7 +9,6 @@ const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-`;
 const CartCount = styled.span`
   background: ${(props) => props.color};
   border-radius: 50%;

@@ -1,0 +1,22 @@
+/* CSS module it is same like the css file only differce is exrension should module.css and no hyfen used camelCase used in this and should be imported in the one where the styling is used */
+
+.wrapper {
+  width: 100%;
+  height: 80px;
+  background-color:darkorange;
+  padding-left: 20px;
+  /* font-size: 30px; */
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: brown;
+}
+.headBtn {
+  margin-right: 20px;
+  width: 104px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 40px;
+  background-color:aquamarine;
+}
