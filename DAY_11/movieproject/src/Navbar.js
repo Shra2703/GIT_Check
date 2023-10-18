@@ -1,4 +1,39 @@
 import { Component } from "react";
+import styled from "styled-components";
+
+// styled component
+const Nav = styled.div`
+  height: 70px;
+  background: #4267b2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+`;
+const CartCount = styled.span`
+  background: ${(props) => props.color};
+  border-radius: 50%;
+  padding: 4px 8px;
+  position: absolute;
+  right: 10px;
+  top: -5px;
+  fontsize: 12px;
+  // to set the dynamic styliing the props
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+`;
+
+const Title = styled.div`
+font-size: 30px;
+color: #fff;
+font-weight: 600;
+font-family: Montserrat, sans-serif;
+text-transform: uppercase;
+margin-left: 20px;
+// Styled using psedo class
+  &:hover {
+    color: yellow;
+  }
+`;
 
 class Navbar extends Component {
   render() {
@@ -15,17 +50,21 @@ class Navbar extends Component {
           }}
         > */}
 
-        <div style={styles.nav}>
-          <div style={styles.title}>Movie-App</div>
+        <Nav>
+          <Title>Movie-App</Title>
           <div style={styles.cartContainer}>
             <img
               src="https://cdn-icons-png.flaticon.com/128/4290/4290854.png"
               alt="Cart Icon"
               style={styles.cartIcon}
             />
-            <span style={styles.cartCount}> 0</span>
+            {/* <span style={styles.cartCount}>0</span>
+             */}
+            <CartCount color="yellow" show={true}>
+              0
+            </CartCount>
           </div>
-        </div>
+        </Nav>
       </>
     );
   }
