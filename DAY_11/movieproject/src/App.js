@@ -20,6 +20,7 @@ class App extends React.Component {
     super();
     this.state = {
       movies: movies,
+      cartCount: 0,
     };
   }
 
@@ -67,31 +68,28 @@ class App extends React.Component {
 
   // handle the cart btn
   handleCart = (movie) => {
-    const { movies } = this.state;
+    let { movies, cartCount } = this.state;
     const mid = movies.indexOf(movie);
     movies[mid].cart = !movies[mid].cart;
+    if (movies[mid].cart) cartCount += 1;
+    else cartCount -= 1;
     this.setState({
       movies: movies,
+      cartCount: cartCount,
     });
   };
 
   render() {
-    const {
-      movies,
-      handleIncStars,
-      handleDescStars,
-      handleFavourite,
-      handleCart,
-    } = this.state;
+    const { movies, cartCount } = this.state;
     return (
       <>
-        <Navbar />
+        <Navbar cartCount={cartCount} />
         <MovieListProps
           movies={movies}
-          handleIncStars={handleIncStars}
-          handleDescStars={handleDescStars}
-          handleFavourite={handleFavourite}
-          handleCart={handleCart}
+          handleIncStars={this.handleIncStars}
+          handleDescStars={this.handleDescStars}
+          handleFavourite={this.handleFavourite}
+          handleCart={this.handleCart}
         />
       </>
     );

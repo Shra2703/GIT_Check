@@ -8,7 +8,8 @@ const Nav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top: 0;
 `;
 const CartCount = styled.span`
   background: ${(props) => props.color};
@@ -36,6 +37,8 @@ const Title = styled.div`
 `;
 
 class Navbar extends Component {
+  
+ 
   render() {
     return (
       <>
@@ -61,7 +64,7 @@ class Navbar extends Component {
             {/* <span style={styles.cartCount}>0</span>
              */}
             <CartCount color="yellow" show={true}>
-              0
+             {this.props.cartCount}
             </CartCount>
           </div>
         </Nav>
