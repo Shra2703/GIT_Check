@@ -9,6 +9,7 @@ const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+`;
 const CartCount = styled.span`
   background: ${(props) => props.color};
   border-radius: 50%;
@@ -16,19 +17,19 @@ const CartCount = styled.span`
   position: absolute;
   right: 10px;
   top: -5px;
-  fontsize: 12px;
+  font-size: 12px;
   // to set the dynamic styliing the props
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
 `;
 
 const Title = styled.div`
-font-size: 30px;
-color: #fff;
-font-weight: 600;
-font-family: Montserrat, sans-serif;
-text-transform: uppercase;
-margin-left: 20px;
-// Styled using psedo class
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  font-family: Montserrat, sans-serif;
+  text-transform: uppercase;
+  margin-left: 20px;
+  // Styled using psedo class
   &:hover {
     color: yellow;
   }
