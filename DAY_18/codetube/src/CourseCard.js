@@ -83,7 +83,7 @@ const CourseCard = (props) => {
 
         {/* add to cart button */}
         <div className="cart">
-          {isInCart ? (
+          {!isInCart ? (
             <button
               className="cartColorPurple"
               onClick={() => handleCart(course)}

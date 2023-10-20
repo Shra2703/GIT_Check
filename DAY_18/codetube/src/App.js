@@ -8,25 +8,30 @@ class App extends Component {
     super();
     this.state = {
       courses: courses,
+      cartCount: 0,
     };
   }
 
   handleCart = (course) => {
-    const { courses } = this.state;
+    let { courses, cartCount } = this.state;
     const cid = courses.indexOf(course);
     courses[cid].isInCart = !courses[cid].isInCart;
 
+    // cart count imcrease or decrease
+    if (courses[cid].isInCart) cartCount += 1;
+    else cartCount -= 1;
+
     this.setState({
       courses: courses,
+      cartCount: cartCount
     });
   };
   render() {
-    let { courses } = this.state;
+    let { courses, cartCount } = this.state;
     return (
       <>
-        <Navbar />
-        <CourseList courses={courses} 
-        handleCart = {this.handleCart}/>
+        <Navbar cartCount={cartCount} />
+        <CourseList courses={courses} handleCart={this.handleCart} />
       </>
     );
   }

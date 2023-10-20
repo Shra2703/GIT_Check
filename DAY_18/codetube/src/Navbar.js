@@ -41,9 +41,11 @@ const CartCount = styled.div`
   top: -5px;
   font-size: 12px;
   color: white;
+  font-weight: 700;
 `;
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const {cartCount} = props;
   return (
     <>
       <Nav>
@@ -53,7 +55,7 @@ const Navbar = () => {
             src="https://cdn-icons-png.flaticon.com/128/3643/3643914.png"
             alt="Cart Icon"
           />
-          <CartCount>0</CartCount>
+          <CartCount>{cartCount}</CartCount>
         </CartContainer>
       </Nav>
     </>
