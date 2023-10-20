@@ -2,7 +2,10 @@
 
 import "./courseCard.css";
 
-const CourseCard = () => {
+const CourseCard = (props) => {
+
+  const {img,title,rating,language,lectures,price} = props.course;
+  console.log(props)
   return (
     <>
       {/* outer div */}
@@ -10,14 +13,14 @@ const CourseCard = () => {
         {/* course img */}
         <div className="top">
           <img
-            src="https://img-c.udemycdn.com/course/750x422/2492962_f098.jpg"
+            src={img}
             alt="course-img"
           />
         </div>
 
         {/* middle text or course text */}
         <div className="middle">
-          <p>Web Development Course | HTML, CSS, JS</p>
+          <p>{title}</p>
         </div>
 
         {/* footer which contains language, no of lectures,rating, price */}
@@ -46,7 +49,7 @@ const CourseCard = () => {
                 src="https://cdn-icons-png.flaticon.com/128/2107/2107737.png"
                 alt="rating"
               />
-              <span>4.9</span>{" "}
+              <span>{rating}</span>{" "}
             </div>
 
             {/* left side bottom contains language, and lectures */}
@@ -56,7 +59,7 @@ const CourseCard = () => {
                   src="https://cdn-icons-png.flaticon.com/128/5403/5403606.png"
                   alt="language"
                 />
-                <span>Hindi</span>
+                <span>{language}</span>
               </div>
 
               <div className="inner">
@@ -64,7 +67,7 @@ const CourseCard = () => {
                   src="https://cdn-icons-png.flaticon.com/128/5346/5346453.png"
                   alt="no of lectures"
                 />{" "}
-                <span>50+</span>
+                <span>{lectures}</span>
               </div>
             </div>
           </div>
@@ -76,7 +79,7 @@ const CourseCard = () => {
               src="https://cdn-icons-png.flaticon.com/128/991/991952.png"
               alt="price"
             />
-            <span>15</span>
+            <span>{price}</span>
           </div>
         </div>
 

@@ -1,10 +1,22 @@
 import { Component } from "react";
 import Navbar from "./Navbar";
-class App extends Component {
-  render() {
+import CourseList from "./CourseList";
+import { courses } from "./CourseListData";
 
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      courses: courses,
+    };
+  }
+  render() {
+    let {courses} = this.state;
     return (
-      <Navbar />
+      <>
+        <Navbar />
+        <CourseList  courses = {courses}/>
+      </>
     );
   }
 }
