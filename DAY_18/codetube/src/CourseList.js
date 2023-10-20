@@ -11,13 +11,14 @@ const Left = styled.div`
   justify-content: center;
 `;
 const CourseList = (props) => {
-  const {courses} = props;
+  const {courses, handleCart} = props;
   return (
     <>
       <Left>
       {
         courses.map((course) => (
-          <CourseCard  course = {course}/>
+          <CourseCard  course = {course}
+          handleCart = {handleCart}/>
         ))
       }
         

@@ -3,19 +3,17 @@
 import "./courseCard.css";
 
 const CourseCard = (props) => {
-
-  const {img,title,rating,language,lectures,price} = props.course;
-  console.log(props)
+  const { img, title, rating, language, lectures, price, isInCart } =
+    props.course;
+  const { handleCart, course } = props;
+  console.log(props);
   return (
     <>
       {/* outer div */}
       <div className="main">
         {/* course img */}
         <div className="top">
-          <img
-            src={img}
-            alt="course-img"
-          />
+          <img src={img} alt="course-img" />
         </div>
 
         {/* middle text or course text */}
@@ -85,7 +83,18 @@ const CourseCard = (props) => {
 
         {/* add to cart button */}
         <div className="cart">
-          <button>Add to Cart</button>
+          {isInCart ? (
+            <button
+              className="cartColorPurple"
+              onClick={() => handleCart(course)}
+            >
+              Add to Cart
+            </button>
+          ) : (
+            <button className="cartColorRed" onClick={() => handleCart(course)}>
+              Remove to Cart
+            </button>
+          )}
         </div>
       </div>
     </>

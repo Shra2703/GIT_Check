@@ -10,12 +10,23 @@ class App extends Component {
       courses: courses,
     };
   }
+
+  handleCart = (course) => {
+    const { courses } = this.state;
+    const cid = courses.indexOf(course);
+    courses[cid].isInCart = !courses[cid].isInCart;
+
+    this.setState({
+      courses: courses,
+    });
+  };
   render() {
-    let {courses} = this.state;
+    let { courses } = this.state;
     return (
       <>
         <Navbar />
-        <CourseList  courses = {courses}/>
+        <CourseList courses={courses} 
+        handleCart = {this.handleCart}/>
       </>
     );
   }
