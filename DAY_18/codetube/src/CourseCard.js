@@ -5,6 +5,7 @@ import "./courseCard.css";
 const CourseCard = (props) => {
   const { img, title, rating, language, lectures, price, isInCart } =
     props.course;
+  console.log("course", props);
   const { handleCart, course } = props;
   console.log(props);
   return (

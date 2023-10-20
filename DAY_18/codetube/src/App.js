@@ -4,6 +4,7 @@ import CourseList from "./CourseList";
 import { courses } from "./CourseListData";
 import styled from "styled-components";
 import TeacherList from "./TeacherList";
+import { teachers } from "./TeachersData";
 
 const Container = styled.div`
   border-right: 1px solid silver;
@@ -15,10 +16,12 @@ class App extends Component {
     super();
     this.state = {
       courses: courses,
+      teachers: teachers,
       cartCount: 0,
     };
   }
 
+  // Add to cart button
   handleCart = (course) => {
     let { courses, cartCount } = this.state;
     const cid = courses.indexOf(course);
@@ -33,14 +36,27 @@ class App extends Component {
       cartCount: cartCount,
     });
   };
+
+  // follow button
+  handleFollow = (teacher) => {
+    let { teachers } = this.state;
+    const tid = teachers.indexOf(teacher);
+    teachers[tid].isFollow = !teachers[tid].isFollow;
+    this.setState({
+      teachers: teachers,
+    });
+  };
+
   render() {
-    let { courses, cartCount } = this.state;
+    let { courses, cartCount, teachers } = this.state;
+    console.log("hello", teachers);
     return (
       <>
         <Navbar cartCount={cartCount} />
         <Container>
           <CourseList courses={courses} handleCart={this.handleCart} />
-          <TeacherList />
+          <TeacherList teachers={teachers} 
+          handleFollow = {this.handleFollow}/>
         </Container>
       </>
     );

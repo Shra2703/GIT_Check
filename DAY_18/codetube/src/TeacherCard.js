@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 const Main = styled.div`
   width: 85%;
-  border: 1px solid;
+  /* border: 1px solid; */
   margin: 10px;
   background-color: white;
+  background-color: rgb(228, 224, 224);
+
   border-radius: 19px;
 `;
 
@@ -37,28 +39,36 @@ const Button = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 15px;
-  background-color: rgb(103, 1, 103);
+  /* background-color: rgb(103, 1, 103); */
+  background-color: ${(props) =>
+    !props.isFollow ? "rgb(103, 1, 103)" : "red"};
 `;
 
-const TeacherCard = () => {
+const TeacherCard = (props) => {
+  const { img, title, isFollow } = props.teacher;
+  const { teacher, handleFollow } = props;
   return (
     <>
       {/* outer div */}
       <Main>
         {/* course img */}
 
-        <Img
-          src="https://ted-conferences-speaker-photos-production.s3.amazonaws.com/yoa4pm3vyerco6hqbhjxly3bf41d"
-          alt="teacher-img"
-        />
+        <Img src={img} alt="teacher-img" />
 
         {/* middle text or course text */}
 
-        <Text>Falak Chandani</Text>
+        <Text>{title}</Text>
 
-        {/* add to cart button */}
-
-        <Button>Follow Me</Button>
+        {/* Follow button */}
+        {!isFollow ? (
+          <Button onClick={() => handleFollow(teacher)} isFollow={isFollow}>
+            Follow Me
+          </Button>
+        ) : (
+          <Button onClick={() => handleFollow(teacher)} isFollow={isFollow}>
+            Un-Follow
+          </Button>
+        )}
       </Main>
     </>
   );
