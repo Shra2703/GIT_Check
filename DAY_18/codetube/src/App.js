@@ -2,6 +2,13 @@ import { Component } from "react";
 import Navbar from "./Navbar";
 import CourseList from "./CourseList";
 import { courses } from "./CourseListData";
+import styled from "styled-components";
+import TeacherList from "./TeacherList";
+
+const Container = styled.div`
+  border-right: 1px solid silver;
+  display: flex;
+`;
 
 class App extends Component {
   constructor() {
@@ -23,7 +30,7 @@ class App extends Component {
 
     this.setState({
       courses: courses,
-      cartCount: cartCount
+      cartCount: cartCount,
     });
   };
   render() {
@@ -31,7 +38,10 @@ class App extends Component {
     return (
       <>
         <Navbar cartCount={cartCount} />
-        <CourseList courses={courses} handleCart={this.handleCart} />
+        <Container>
+          <CourseList courses={courses} handleCart={this.handleCart} />
+          <TeacherList />
+        </Container>
       </>
     );
   }
