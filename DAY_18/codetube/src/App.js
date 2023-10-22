@@ -9,6 +9,9 @@ import { teachers } from "./TeachersData";
 const Container = styled.div`
   border-right: 1px solid silver;
   display: flex;
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 class App extends Component {
@@ -55,8 +58,7 @@ class App extends Component {
         <Navbar cartCount={cartCount} />
         <Container>
           <CourseList courses={courses} handleCart={this.handleCart} />
-          <TeacherList teachers={teachers} 
-          handleFollow = {this.handleFollow}/>
+          <TeacherList teachers={teachers} handleFollow={this.handleFollow} />
         </Container>
       </>
     );

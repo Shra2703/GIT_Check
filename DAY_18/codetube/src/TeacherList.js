@@ -12,21 +12,40 @@ const Right = styled.span`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    flex-direction: row;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
-const Title = styled.p`
+const Title = styled.span`
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 35px;
   font-weight: 500;
+  /* media queries */
+  @media only screen and (max-width: 875px) {
+    font-size: 30px;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    flex-direction: row;
+    height: auto;
+    text-align: center;
+  }
 `;
 const TeacherList = (props) => {
   const { teachers, handleFollow } = props;
   // console.log("2", teachers)
   return (
     <>
+      <div></div>
       <Right>
         <Title>Instructor</Title>
+
         {teachers.map((teacher) => (
           <TeacherCard teacher={teacher} handleFollow={handleFollow} />
         ))}

@@ -9,6 +9,19 @@ const Main = styled.div`
   background-color: rgb(228, 224, 224);
 
   border-radius: 19px;
+  @media only screen and (max-width: 1070px) {
+    width: 104%;
+  }
+  @media only screen and (max-width: 777px) {
+    width: 114%;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 46%;
+  }
+  @media only screen and (max-width: 560px) {
+    width: 40%;
+    /* border: 1px solid; */
+  }
 `;
 
 const Img = styled.img`
@@ -24,6 +37,12 @@ const Text = styled.p`
   font-weight: 400;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  @media only screen and (max-width: 777px) {
+    font-size: 17px;
+  }
+  @media only screen and (max-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 const Button = styled.button`
@@ -42,6 +61,17 @@ const Button = styled.button`
   /* background-color: rgb(103, 1, 103); */
   background-color: ${(props) =>
     !props.isFollow ? "rgb(103, 1, 103)" : "red"};
+
+  @media only screen and (max-width: 1464px) {
+    width: 86%;
+    margin-left: 20px;
+  }
+  @media only screen and (max-width: 1070px) {
+    margin-left: 12px;
+  }
+  @media only screen and (max-width: 700px) {
+    font-size: 13px;
+  }
 `;
 
 const TeacherCard = (props) => {
