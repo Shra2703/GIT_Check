@@ -63,6 +63,8 @@ body {
   width: 100%;
   padding: 10px 20px;
   box-sizing: border-box;
+  /* justify-content: center; */
+  align-items: center;
   /* border: 1px solid black; */
 }
 .footer .rating {
@@ -80,9 +82,13 @@ body {
   font-weight: 600;
   flex: 1;
   position: relative;
+  /* border: 1px solid ; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-footer.starCount {
+footer .starCount {
   font-size: 20px;
   font-weight: 600;
   position: absolute;
@@ -107,7 +113,6 @@ footer.starCount {
   background-color: #bc16dd;
   color: #fff;
   margin: 5px;
-
 }
 .cart-btn {
   background-color: #251bb1;
@@ -119,4 +124,116 @@ footer.starCount {
   color: #fff;
   text-shadow: none;
   margin: 5px;
+}
+
+@media only screen and (max-width: 850px) {
+  .movie-card .left img {
+    width: 100%;
+    height: 45rem;
+  }
+
+  .main {
+    width: 80%;
+  }
+  .movie-card {
+    /* border: 1px solid; */
+    flex-direction: column;
+    /* height: auto; */
+    height: 65rem;
+  }
+
+  .movie-card .title {
+    font-size: 35px;
+    text-align: center;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  .movie-card .plot {
+    font-size: 23px;
+    margin-top: 0px;
+    padding-top: 0px;
+    text-align: center;
+  }
+  .movie-card .price {
+    font-size: 25px;
+    margin-top: 5px;
+    padding-left: 34px;
+  }
+  .footer .rating {
+    font-size: 24px;
+    padding-left: 15px;
+  }
+  .footer .star-dis {
+    margin-left: -153px;
+  }
+  .footer .starCount {
+    font-size: 35px;
+  }
+  .footer .stars {
+    width: 35px;
+    height: 35px;
+  }
+  .footer .str-btn {
+    width: 25px;
+    height: 25px;
+    margin-right: 4px;
+  }
+  .footer button {
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .main {
+    width: 100%;
+  }
+  .movie-card .price {
+    text-align: center;
+    font-size: 29px;
+  }
+}
+
+@media only screen and (max-width: 510px) {
+  .movie-card {
+    height: 67rem;
+  }
+  .footer {
+    margin-top: 20px;
+  }
+  .footer .star-dis {
+    margin-left: -103px;
+  }
+  .footer .starCount {
+    font-size: 30px;
+  }
+  .footer .stars {
+    width: 30px;
+    height: 30px;
+  }
+  .footer .str-btn {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer button {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .footer .starCount {
+    font-size: 23px;
+  }
+  .footer .stars {
+    width: 25px;
+    height: 25px;
+  }
+  .footer .str-btn {
+    width: 14px;
+    height: 14px;
+  }
+
+  .footer button {
+    font-size: 12px;
+  }
 }

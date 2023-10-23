@@ -13,7 +13,6 @@ class ComponentA extends React.Component {
 
   static getDerivedStateFromProps() {
     // cannot use setState here to 
-    let { name2 } = this.state;
     console.log("Static");
    
     return null;
