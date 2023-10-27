@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // useState is the hook which takes 2 argument
 // 1st argument is same like that we define in the this.state variable to set the value
 // 2nd argument is like the setState to assign the updated value in the firstArgument.
 
 const InputExercsieUseState = () => {
-  const [firstName, setFirstName] = useState(""); // useState contains the value which is used to store in the firstName intitally and setFirstName will assign with the updated value in the firstName
+  const [firstName, setFirstName] = useState("Harry"); // useState contains the value which is used to store in the firstName intitally and setFirstName will assign with the updated value in the firstName
 
   const [lastName, setLastName] = useState("");
+
+  //   changing the title using sideeffects with the help useEfect();
+  //   working as a component didMount with the square brackets
+  useEffect(() => {
+    document.title = firstName + " " + lastName;
+  }, []);
+
+  //   without square brackets works like component did mount and component did update
+  useEffect(() => {
+    document.title = firstName + " " + lastName;
+  });
   return (
     <>
       <h1>Input field exercsie in useState()</h1>
