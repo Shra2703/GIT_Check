@@ -47,3 +47,7 @@
 > Day 18-19
   1) ***Exercise 1:*** ***CodeTube Mini-Project** This CodeTude mini-project contains the list of courses and the instructor and we can follow and unfollow the instructor as well. The Add to Cart functionality is also added with the cart count on the cart icon. Styled components are used to style the component.*
      - 🔗Link: https://github.com/Shra2703/React-JS-learning/tree/main/DAY_18/codetube
+
+> DAY 20-21
+  1) ***Exercise 1:*** ***Movie Mini-Project** is a simple React application that allows you to browse and manage your favorite Marvel entertainment series. With this app, you can increase or decrease the rating of series, add them to your cart, mark them as favorites, and more. It's your one-stop destination for managing your Marvel series collection.*
+     -  🔗Link: https://github.com/Shra2703/React-JS-learning/tree/main/DAY_11/movieproject
