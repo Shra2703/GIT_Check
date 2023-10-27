@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const InputExercsieUseState = () => {
-  let [increment, setIncr] = useState(0);
+  let [value, setValue] = useState(0);
 
-  let [decrement, setDecr] = useState(0);
+  //   changing the title
+  useEffect(() => {
+    document.title = value;
+  });
+
   return (
     <>
       <h1>Increment, Decrement counter</h1>
+      <h2>{value}</h2>
       <div>
-        <button onClick={() => setIncr((increment += 1))}>Increment</button>
-        {increment}
-        <button onClick={() => setDecr((decrement -= 1))}>Decrement</button>
-        {decrement}
+        <button onClick={() => setValue((value += 1))}>Increment</button>
+
+        <button onClick={() => setValue((value -= 1))}>Decrement</button>
       </div>
     </>
   );

@@ -6,18 +6,32 @@ import { useEffect, useState } from "react";
 const InputExercsieUseState = () => {
   const [firstName, setFirstName] = useState("Harry"); // useState contains the value which is used to store in the firstName intitally and setFirstName will assign with the updated value in the firstName
 
-  const [lastName, setLastName] = useState("");
+  const [lastName, setLastName] = useState("potter");
 
   //   changing the title using sideeffects with the help useEfect();
-  //   working as a component didMount with the square brackets
+  // Syntax
+  //   working as a component didMount with the square brackets #1
   useEffect(() => {
     document.title = firstName + " " + lastName;
   }, []);
 
-  //   without square brackets works like component did mount and component did update
+  //   will update only when there is a change in the lastName
+  useEffect(() => {
+    document.title = firstName + " " + lastName;
+  }, [lastName]);
+
+  //   without square brackets works like component did mount and component did update #3
   useEffect(() => {
     document.title = firstName + " " + lastName;
   });
+
+
+  // trying to use multiple side-effects
+  useEffect(()=>{
+    let timer = setInterval(()=>{
+      console.log("Window width", window.innerWidth)
+    },2000)
+  })
   return (
     <>
       <h1>Input field exercsie in useState()</h1>

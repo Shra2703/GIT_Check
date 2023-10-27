@@ -7,6 +7,7 @@ class ChangeTitle extends React.Component {
       firstName: "",
       lastName: "",
     };
+    this.timer = null;
   }
 
   handleFirstName = (e) => {
@@ -23,6 +24,11 @@ class ChangeTitle extends React.Component {
   //   changing the title using life cycle methods
   componentDidMount() {
     document.title = this.state.firstName + " " + this.state.lastName;
+
+    // performing multiple side-effects here
+    this.timer = setInterval(() => {
+      console.log("window widht:", window.innerWidth);
+    }, 2000);
     console.log(document.title);
   }
   componentDidUpdate() {
@@ -30,10 +36,14 @@ class ChangeTitle extends React.Component {
     console.log(document.title);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     return (
       <>
-        <h1>Changing the title also</h1>
+        <h1>Changing the title also class</h1>
         <div>
           <input
             type="text"
