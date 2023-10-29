@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
+
 export default function Blog() {
+  // variables to store the content and the title
+  let [title, setTitle] = useState("");
+  let [text, setText] = useState("");
+  let [blogs, setBlogs] = useState([]);
+
+  // this function will be invoked when submit button will be clicked
   function handleSubmit(e) {
     e.preventDefault();
+    setBlogs([{ title, text }, ...blogs]);
+    console.log(blogs);
+
+    // to clear the text from the input fields
+    setTitle("");
+    setText("");
   }
+
+  // function which renders
   return (
     <>
       {/* heading of the page */}
@@ -26,6 +42,8 @@ export default function Blog() {
             type="text"
             className="input"
             placeholder="Enter the title here"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <hr />
           {/* <Row label="Content">
@@ -42,11 +60,15 @@ export default function Blog() {
           <textarea
             className="input content"
             placeholder="Content goes here..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           ></textarea>
           <hr />
 
           {/* button where the blog will get submitted */}
-          <button className="btn">ADD</button>
+          <button className="btn" onClick={handleSubmit}>
+            ADD
+          </button>
         </form>
       </div>
 
@@ -54,6 +76,12 @@ export default function Blog() {
 
       {/* results will ne shown here */}
       <h2>Blogs</h2>
+      {blogs.map((blog) => (
+        <div className="blog" key={1}>
+          <h3>{blog.title}</h3>
+          <p>{blog.text}</p>
+        </div>
+      ))}
     </>
   );
 }
