@@ -22,6 +22,12 @@ export default function Blog() {
     setFormdata({ title: "", text: "" });
   }
 
+
+  // function to delete the blogs
+  function handleDeleteBlogs(i) {
+    setBlogs(blogs.filter((blog, index) => i != index));
+  }
+
   // function which renders
   return (
     <>
@@ -91,6 +97,12 @@ export default function Blog() {
         <div className="blog" key={i}>
           <h3>{blog.title}</h3>
           <p>{blog.text}</p>
+
+          <div className="blog-btn">
+            <button className="btn remove" onClick={() => handleDeleteBlogs(i)}>
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </>
