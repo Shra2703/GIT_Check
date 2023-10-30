@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Blog() {
   // variables to store the content and the title
@@ -8,12 +8,14 @@ export default function Blog() {
   // one variable to update title and text both
   let [formData, setFormdata] = useState({ title: "", text: "" });
   let [blogs, setBlogs] = useState([]);
+  let titleRef = useRef(null);
 
   // this function will be invoked when submit button will be clicked
   function handleSubmit(e) {
     e.preventDefault();
     setBlogs([{ title: formData.title, text: formData.text }, ...blogs]);
     console.log(blogs);
+    titleRef.current.focus();
 
     // to clear the text from the input fields
     // setTitle("");
@@ -21,7 +23,6 @@ export default function Blog() {
 
     setFormdata({ title: "", text: "" });
   }
-
 
   // function to delete the blogs
   function handleDeleteBlogs(i) {
@@ -58,6 +59,7 @@ export default function Blog() {
             onChange={(e) =>
               setFormdata({ title: e.target.value, text: formData.text })
             }
+            ref={titleRef}
           />
           <hr />
           {/* <Row label="Content">
