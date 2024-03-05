@@ -31,6 +31,8 @@ const InputExercsieUseState = () => {
     let timer = setInterval(()=>{
       console.log("Window width", window.innerWidth)
     },2000)
+
+    return(clearInterval(timer))
   })
   return (
     <>

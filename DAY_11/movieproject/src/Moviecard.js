@@ -69,6 +69,13 @@ class Moviecard extends React.Component {
       };
     });
 
+    // without return
+    // this.setState((prevState) => (
+    //   {
+    //     starCount : prevState.starCount - 0.5,
+    //   }
+    // ))
+
     // 1) setState() do not do batching in #2 form it will call each and every setState() funct and render only once this happens because we are using previous state in the callback.
 
     // this.setState((prevState) => {
