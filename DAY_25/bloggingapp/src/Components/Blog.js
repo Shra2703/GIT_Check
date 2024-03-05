@@ -1,4 +1,14 @@
-import { useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+
+function reducerFunc(state, action){
+  switch(action.type){
+    case "ADD":
+      return [action.blog, ...state];
+    case "REMOVE":
+      return state.filter((blog, index) => index !== action.index)
+  }
+
+}
 
 export default function Blog() {
   // variables to store the content and the title
@@ -7,14 +17,35 @@ export default function Blog() {
 
   // one variable to update title and text both
   let [formData, setFormdata] = useState({ title: "", text: "" });
-  let [blogs, setBlogs] = useState([]);
+  // let [blogs, setBlogs] = useState([]);
+
+  // instead of usestate we are using usereducer
+  let [blogs, dispatch] = useReducer(reducerFunc, []);
+
+  // instead of create ref we are using use ref
   let titleRef = useRef(null);
+
+  // intial fcous when it is first render
+  useEffect(() => {
+    titleRef.current.focus();
+  }, []);
+
+  // Changing the title bar
+  useEffect(() => {
+    if (blogs.length && blogs[0].title) document.title = blogs[0].title;
+    else {
+      document.title = "No Blogs!!!";
+    }
+  }, [blogs]);
 
   // this function will be invoked when submit button will be clicked
   function handleSubmit(e) {
     e.preventDefault();
-    setBlogs([{ title: formData.title, text: formData.text }, ...blogs]);
-    console.log(blogs);
+    // setBlogs([{ title: formData.title, text: formData.text }, ...blogs]);
+    // console.log(blogs);
+
+    // use reducer function
+    dispatch({type : "ADD", blog :{ title: formData.title, text: formData.text }})
     titleRef.current.focus();
 
     // to clear the text from the input fields
@@ -26,7 +57,10 @@ export default function Blog() {
 
   // function to delete the blogs
   function handleDeleteBlogs(i) {
-    setBlogs(blogs.filter((blog, index) => i != index));
+    // setBlogs(blogs.filter((blog, index) => i != index));
+
+    // use reducer function
+    dispatch({type : "REMOVE", index : i})
   }
 
   // function which renders
@@ -60,6 +94,7 @@ export default function Blog() {
               setFormdata({ title: e.target.value, text: formData.text })
             }
             ref={titleRef}
+            required
           />
           <hr />
           {/* <Row label="Content">
@@ -76,7 +111,7 @@ export default function Blog() {
           <textarea
             className="input content"
             placeholder="Content goes here..."
-            value={formData.text}
+            value={formData.text}           
             // onChange={(e) => setText(e.target.value)}
             onChange={(e) =>
               setFormdata({ title: formData.title, text: e.target.value })

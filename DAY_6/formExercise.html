@@ -52,7 +52,7 @@
       let valInc = 0; //to increase the value
       let buttonValue = ""; // to get the button vlaue
       let valueArray = []; // to display the output on the screen
-      let inputRef = React.createRef();
+      let inputRef = React.createRef(); //this is the uncontrolled component means when we render from the handle submit it will come to the empty state without rerendering because this is directly controlling the dom tree
 
       // generic function to increase the value
       const valFunc = (num) => {
@@ -69,6 +69,8 @@
             {buttonValue}
             {" , "}
             {inputRef.current.value}
+            {/*This is by the help of template literal*/}
+            {/* <span>{`${buttonValue},${inputRef.current.value}`}</span> */}
           </span>
         );
         valInc += buttonValue;
@@ -123,8 +125,8 @@
             <table border = "2">
               <tbody>
 
-                {valueArray.map((val) => (
-                    <tr>
+                {valueArray.map((val,index) => (
+                    <tr key = {index}>
                         <td>{val}</td>
                     </tr>
                   
