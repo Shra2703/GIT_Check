@@ -1,20 +1,17 @@
 import { useEffect, useReducer, useRef, useState } from "react";
+import { db } from "../firebaseinit";
+import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
 
-function reducerFunc(state, action){
-  switch(action.type){
+function reducerFunc(state, action) {
+  switch (action.type) {
     case "ADD":
       return [action.blog, ...state];
     case "REMOVE":
-      return state.filter((blog, index) => index !== action.index)
+      return state.filter((blog, index) => index !== action.index);
   }
-
 }
 
 export default function Blog() {
-  // variables to store the content and the title
-  // let [title, setTitle] = useState("");
-  // let [text, setText] = useState("");
-
   // one variable to update title and text both
   let [formData, setFormdata] = useState({ title: "", text: "" });
   // let [blogs, setBlogs] = useState([]);
@@ -38,29 +35,48 @@ export default function Blog() {
     }
   }, [blogs]);
 
-  // this function will be invoked when submit button will be clicked
-  function handleSubmit(e) {
-    e.preventDefault();
-    // setBlogs([{ title: formData.title, text: formData.text }, ...blogs]);
-    // console.log(blogs);
+  // fetching the data from the firebase to show it on we in first render
+  useEffect(() => {
+    async function getData() {
+      let snapshot = await getDocs(collection(db, "blogs"));
+      console.log(snapshot);
 
+      const blogs = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+
+      console.log(blogs);
+    }
+    getData();
+  }, []);
+
+  // this function will be invoked when submit button will be clicked
+  async function handleSubmit(e) {
+    e.preventDefault();
     // use reducer function
-    dispatch({type : "ADD", blog :{ title: formData.title, text: formData.text }})
+    dispatch({
+      type: "ADD",
+      blog: { title: formData.title, text: formData.text },
+    });
     titleRef.current.focus();
 
-    // to clear the text from the input fields
-    // setTitle("");
-    // setText("");
+    // Adding the data in the fire base
+    const docRef1 = await addDoc(collection(db, "blogs"), {
+      title: formData.title,
+      content: formData.text,
+      createdOn: new Date(),
+    });
 
     setFormdata({ title: "", text: "" });
   }
 
   // function to delete the blogs
   function handleDeleteBlogs(i) {
-    // setBlogs(blogs.filter((blog, index) => i != index));
-
     // use reducer function
-    dispatch({type : "REMOVE", index : i})
+    dispatch({ type: "REMOVE", index: i });
   }
 
   // function which renders
@@ -72,14 +88,6 @@ export default function Blog() {
       <div className="section">
         {/* form where the blog is submitted */}
         <form onSubmit={handleSubmit}>
-          {/* <Row label="Title">
-            <input
-              type="text"
-              className="input"
-              placeholder="Enter the title here"
-            />
-          </Row> */}
-
           {/* input  field where the title of the blog will be written*/}
           <label>
             Title <br />
@@ -89,7 +97,6 @@ export default function Blog() {
             className="input"
             placeholder="Enter the title here"
             value={formData.title}
-            // onChange={(e) => setTitle(e.target.value)}
             onChange={(e) =>
               setFormdata({ title: e.target.value, text: formData.text })
             }
@@ -97,12 +104,6 @@ export default function Blog() {
             required
           />
           <hr />
-          {/* <Row label="Content">
-            <textarea
-              className="input content"
-              placeholder="Content goes here..."
-            ></textarea>
-          </Row> */}
 
           {/* textarea  field where the text of the blog will be written*/}
           <label>
@@ -111,8 +112,7 @@ export default function Blog() {
           <textarea
             className="input content"
             placeholder="Content goes here..."
-            value={formData.text}           
-            // onChange={(e) => setText(e.target.value)}
+            value={formData.text}
             onChange={(e) =>
               setFormdata({ title: formData.title, text: e.target.value })
             }
