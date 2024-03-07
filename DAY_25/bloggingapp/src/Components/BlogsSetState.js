@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { db } from "../firebaseinit";
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
-
+import {
+  collection,
+  addDoc,
+  getDocs,
+  setDoc,
+  doc,
+  onSnapshot,
+  deleteDoc,
+} from "firebase/firestore";
 
 export default function BlogsSetState() {
   // variables to store the content and the title
@@ -11,8 +18,6 @@ export default function BlogsSetState() {
   // one variable to update title and text both
   let [formData, setFormdata] = useState({ title: "", text: "" });
   let [blogs, setBlogs] = useState([]);
-
- 
 
   // instead of create ref we are using use ref
   let titleRef = useRef(null);
@@ -32,31 +37,42 @@ export default function BlogsSetState() {
 
   // fetching the data from the firebase to show it on we in first render
   useEffect(() => {
-    async function getData() {
-      let snapshot = await getDocs(collection(db, "blogs"));
-      console.log(snapshot);
+    // This will not give the realtime synchroise update
+    // async function getData() {
+    //   let snapshot = await getDocs(collection(db, "blogs"));
+    //   console.log(snapshot);
 
+    //   const blogs = snapshot.docs.map((doc) => {
+    //     return {
+    //       id: doc.id,
+    //       ...doc.data(),
+    //     };
+    //   });
+
+    //   console.log(blogs);
+    //   setBlogs(blogs)
+
+    // }
+    // getData();
+
+    const undub = onSnapshot(collection(db, "blogs"), (snapshot) => {
       const blogs = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-
       console.log(blogs);
-      setBlogs(blogs)
-     
-    }
-    getData();
+      setBlogs(blogs);
+    });
   }, []);
 
   // this function will be invoked when submit button will be clicked
   async function handleSubmit(e) {
     e.preventDefault();
-    setBlogs([{ title: formData.title, text: formData.text }, ...blogs]);
+    // setBlogs([{ title: formData.title, text: formData.text }, ...blogs]);
     // console.log(blogs);
 
-   
     titleRef.current.focus();
 
     // Adding the data in the fire base
@@ -74,8 +90,13 @@ export default function BlogsSetState() {
   }
 
   // function to delete the blogs
-  function handleDeleteBlogs(i) {
-    setBlogs(blogs.filter((blog, index) => i != index));
+  async function handleDeleteBlogs(id) {
+    // delete in the localstorage only
+    // setBlogs(blogs.filter((blog, index) => i != index));
+
+    // real delete from the database
+    const docRef = doc(db, "blogs", id);
+    await deleteDoc(docRef);
   }
 
   // function which renders
@@ -151,7 +172,13 @@ export default function BlogsSetState() {
           <p>{blog.text}</p>
 
           <div className="blog-btn">
-            <button className="btn remove" onClick={() => handleDeleteBlogs(i)}>
+            <button
+              className="btn remove"
+              onClick={() =>
+                // handleDeleteBlogs(i)
+                handleDeleteBlogs(blog.id)
+              }
+            >
               Delete
             </button>
           </div>

@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { db } from "../firebaseinit";
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, onSnapshot } from "firebase/firestore";
 
 function reducerFunc(state, action) {
   switch (action.type) {
@@ -36,21 +36,23 @@ export default function Blog() {
   }, [blogs]);
 
   // fetching the data from the firebase to show it on we in first render
+
   useEffect(() => {
+    // This will not give the realtime synchroise update
     async function getData() {
       let snapshot = await getDocs(collection(db, "blogs"));
       console.log(snapshot);
-
       const blogs = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-
       console.log(blogs);
     }
     getData();
+
+    
   }, []);
 
   // this function will be invoked when submit button will be clicked
