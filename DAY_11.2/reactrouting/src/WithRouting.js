@@ -3,6 +3,7 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Items from "./Pages/Items";
 import Navbar1 from "./Components/Navbar1";
+import Error from "./Pages/Error";
 // this is the 3rd party library
 import {
   createBrowserRouter,
@@ -27,6 +28,7 @@ function WithRouting() {
       // when we want to give something instead of main path
       // path: "/root",
       element: <Navbar1 />,
+      errorElement: <Error />,
       children: [
         { path: "/", element: <Home /> },
         { path: "/about", element: <About /> },
