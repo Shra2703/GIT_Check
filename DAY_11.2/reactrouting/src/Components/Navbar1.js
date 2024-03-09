@@ -8,7 +8,8 @@ const Navbar1 = () => {
 
       <NavLink style = {({isActive}) => isActive === true ? {color : "pink"} : undefined} to="/">Home</NavLink> <br /> <br />
       <NavLink style = {({isActive}) => isActive === true ? {color : "pink"} : undefined} to="/about">About</NavLink> <br /> <br />
-      <NavLink style = {({isActive}) => isActive === true ? {color : "pink"} : undefined} to="/contact">Contact Us</NavLink> <br />
+      <NavLink style = {({isActive}) => isActive === true ? {color : "pink"} : undefined} to="/contact">Contact Us</NavLink> <br /> <br />
+      <NavLink style = {({isActive}) => isActive === true ? {color : "pink"} : undefined} to="/items"> Items</NavLink> <br />
       {/* by this outlet all the other component content will be seen on screen */}
       <Outlet />
     </>
