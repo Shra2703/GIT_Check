@@ -1,5 +1,5 @@
 import GrandChildComponent from "./GrandChildComponent";
-
+import GrandChildComponentConsumer from "./GrandChildComponentConsumer";
 const ChildComponent = (props) => {
   const { color } = props;
   return (
@@ -13,7 +13,14 @@ const ChildComponent = (props) => {
           width: "300px",
         }}
       >
-        <GrandChildComponent color={color} />
+        {/* for props */}
+        {/* <GrandChildComponent color={color} /> */}
+
+        {/* context api using context api */}
+        {/* <GrandChildComponent /> */}
+
+        {/* Using Consumer */}
+        <GrandChildComponentConsumer />
       </div>
     </>
   );

@@ -4,12 +4,12 @@ import { colorContext } from "../context";
 
 const GrandChildComponent = (props) => {
     const { color } = props;
-    // consuming the use Context
+    // consuming the use Context 3rd step
     const val = useContext(colorContext);
     return (
       <>
-        <p style={{color : val}}>
-            Color: {val}
+        <p style={{color : val.color}}>
+            Color: {val.color}
         </p>
       </>
     );

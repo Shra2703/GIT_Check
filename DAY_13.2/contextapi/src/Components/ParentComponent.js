@@ -14,7 +14,10 @@ const ParentComponent = () => {
         value={color}
       />
       {/* 2nd step providing the context */}
-      <colorContext.Provider value={color}>
+
+      {/* <colorContext.Provider value={color}> */}
+      {/* passing it as the object */}
+      <colorContext.Provider value={{color, setColor}}>
         <ChildComponent />
       </colorContext.Provider>
       {/* Using PRops drilling */}
