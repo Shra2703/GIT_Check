@@ -2,7 +2,7 @@
 
 // Actions contrainsts
 const ADD_TODO = "ADD_TODO"
-const TOGGLE_TODO = "TOGGLE TODO"
+const TOGGLE_TODO = "TOGGLE_TODO"
 
 // ACtions creator
 const addTodo = (text) => ({text, type: ADD_TODO})

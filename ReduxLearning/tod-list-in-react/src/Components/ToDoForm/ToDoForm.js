@@ -1,12 +1,22 @@
 import "./ToDoForm.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../redux/actions/todoActions";
 
-const ToDoForm = ({ createTodo }) => {
+const ToDoForm = (props) => {
+
+  // this is for froms
+  // let {createTodo} = props;
   const [todoText, setTodotext] = useState("");
+
+  // for redux store
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createTodo(todoText);
+    // for props
+    // createTodo(todoText);
+    dispatch(addTodo(todoText))
     setTodotext("");
   };
 
