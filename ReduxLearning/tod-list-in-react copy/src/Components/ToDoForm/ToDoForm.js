@@ -13,7 +13,6 @@ const ToDoForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
     dispatch(addTodo(todoText))
     setTodotext("");
   };

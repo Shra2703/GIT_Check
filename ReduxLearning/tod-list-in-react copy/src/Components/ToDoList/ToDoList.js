@@ -2,13 +2,11 @@ import "./TodoList.css";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTodo } from "../../redux/actions/todoActions";
 
-const ToDoList = (props) => {
-  // using props
-  // let {onToggle } = props;
+const ToDoList = () => {
 
   // using redux we are using use selector hook so that we can directly access the state of the redux store
-  const todos = useSelector((state) => state.todos);
-  // console.log(todos[0].text);
+  const todos = useSelector((state) => state.todoReducer.todos);
+  
   let dispatch = useDispatch();
 
   return (

@@ -4,12 +4,20 @@ import Home from "./Components/Home/Home";
 import ToDoForm from "./Components/ToDoForm/ToDoForm";
 import ToDoList from "./Components/ToDoList/ToDoList";
 import NavBar from "./Components/Navbar/NavBar";
+import NoteForm from "./Components/NoteForm/NoteForm";
+import NoteList from "./Components/NoteList/NoteList";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { store } from "./redux/todoStore";
 import { Provider } from "react-redux";
+import { useState } from "react";
 
 function App() {
+  const [notes, createNotes] = useState([]);
+
+  function createTextNotes(noteText){
+    createNotes([...notes, {text: noteText}])
+  }
   return (
     <>
       <div>
@@ -25,12 +33,23 @@ function App() {
                 path="todo"
                 element={
                   <>
-                  <NavBar/>
+                    <NavBar />
                     <h1 style={{ textAlign: "center", color: "green" }}>
                       Todo App
                     </h1>
                     <ToDoForm />
                     <ToDoList />
+                  </>
+                }
+              ></Route>
+
+              <Route
+                path="notes"
+                element={
+                  <>
+                    <NavBar />
+                    <NoteForm createTextNotes = {createTextNotes}/>
+                    <NoteList notes = {notes}/>
                   </>
                 }
               ></Route>
