@@ -1,6 +1,7 @@
 import "./NoteList.css";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteNote } from "../../redux/actions/noteActions";
+import { actions } from "../../redux/reducers/noteReducer";
 
 function NoteList() {
 
@@ -16,9 +17,13 @@ function NoteList() {
             <li>
               {/* <p>{note.createdOn.toLocaleDateString()}</p> */}
               <p className="note-content">{note.text}</p>
-              <button
+              {/* <button
                 className="btn btn-danger"
                 onClick={() => dispatch(deleteNote(index))}
+              > */}
+              <button
+                className="btn btn-danger"
+                onClick={() => dispatch(actions.delete(index))}
               >
                 {" "}
                 Delete

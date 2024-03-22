@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./NoteForm.css";
 import { useDispatch } from "react-redux";
 import { addNote } from "../../redux/actions/noteActions";
+import { actions } from "../../redux/reducers/noteReducer";
 
 function NoteForm() {
   const [noteText, setText] = useState("");
@@ -10,7 +11,8 @@ function NoteForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNote(noteText));
+    // dispatch(addNote(noteText));
+    dispatch(actions.add(noteText));
     setText("");
   };
   return (
@@ -23,7 +25,7 @@ function NoteForm() {
             className="form-contol mb-3"
             onChange={(e) => setText(e.target.value)}
           />
-          <button type="submit" className="btn btn-success float-end" >
+          <button type="submit" className="btn btn-success float-end">
             Create Note
           </button>
         </form>
