@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import React from "react";
+import { posts } from "./data";
 
 const postContext = createContext();
 
@@ -9,22 +9,27 @@ export function useCustomContext() {
 }
 
 function PostkeeperContext({ children }) {
-  const [countSavedPost, setcountSavedPost] = useState(0);
   const [mySavedPost, setMysavedPost] = useState([]);
 
-  
-  const setSavedPost = () => {
-    setcountSavedPost((prev) => prev + 1);
+  const isPostSaved = (id) => {
+    let ans = mySavedPost.find((post) => post.id === id);
+    return ans;
+  };
+
+  const setSavedPost = (post) => {
+    let ans = isPostSaved(post.id);
+    if (ans) alert("Post Alredy Saved!!!");
+    else setMysavedPost((prev) => [post, ...prev]);
   };
 
   const resetFunctionality = () => {
-    setcountSavedPost(0);
+    setMysavedPost([]);
   };
 
   return (
     <>
       <postContext.Provider
-        value={{ countSavedPost, setSavedPost, resetFunctionality }}
+        value={{ setSavedPost, resetFunctionality, mySavedPost, isPostSaved }}
       >
         {children}
       </postContext.Provider>
